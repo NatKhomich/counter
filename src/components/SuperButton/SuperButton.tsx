@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Counter.module.css'
+import s from './SuperButton.module.css'
 
 type SuperButtonType = {
     name: string
@@ -9,7 +9,7 @@ type SuperButtonType = {
 
 const SuperButton = (props: SuperButtonType) => {
     return (
-            <button className={s.active}
+            <button className={s.buttonStyled}
                     disabled={props.disabled}
                     onClick={props.callBack}> {props.name}
             </button>

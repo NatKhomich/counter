@@ -1,0 +1,17 @@
+
+.buttonStyled {
+    background-color: #219ebc;
+    border-radius: 10px;
+    font-size: 40px;
+    font-weight: 600;
+    border: none;
+    width: 120px;
+    margin-top: 20px;
+}
+
+.button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+}
