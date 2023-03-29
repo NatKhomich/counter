@@ -1,9 +1,14 @@
 import React from 'react';
+import s from './DisplayCounter.module.css'
 
-const DisplayCounter = () => {
+type DisplayCounterType = {
+    num: number
+}
+
+const DisplayCounter = (props: DisplayCounterType) => {
     return (
-        <div>
-
+        <div className={s.displayBlock}>
+            <div className={props.num === 5 ? s.numberRed : s.number}> {props.num} </div>
         </div>
     );
 };

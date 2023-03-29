@@ -8,22 +8,5 @@
     background-color: #264653;
 }
 
-.displayBlock {
-    background-color: #219ebc;
-    margin: 0 auto;
-    border-radius: 10px;
-    height: 100px;
-}
 
-.number {
-    font-size: 60px;
-    font-weight: 600;
-    color: black;
-}
-
-.numberRed {
-    font-size: 60px;
-    font-weight: 600;
-    color: red;
-}
 
