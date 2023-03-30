@@ -15,17 +15,16 @@ export const Counter = (props: CounterType) => {
     const ButtonIncreaseHandler = () => {
         props.buttonIncrease()
     }
-
     const ButtonResetHandler = () => {
         props.buttonResetHandler()
     }
 
     return (
         <div className={s.counter}>
-            <DisplayCounter num={props.num}/>
+            <DisplayCounter num={props.num} />
             <div className={sBtn.button}>
-                <SuperButton disabled={props.num === 5} name={'inc'} callBack={ButtonIncreaseHandler}/>
-                <SuperButton disabled={props.num === 0} name={'reset'} callBack={ButtonResetHandler}/>
+                <SuperButton disabled={props.num === 5} name={'inc'} callBack={ButtonIncreaseHandler} />
+                <SuperButton disabled={props.num === 0} name={'reset'} callBack={ButtonResetHandler} />
             </div>
         </div>
     )
