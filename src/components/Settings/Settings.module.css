@@ -1,5 +1,4 @@
 
-
 .settings {
     width: 300px;
     height: 200px;
@@ -10,8 +9,9 @@
 }
 
 .settingsTitle {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 600;
+    color: #219ebc;
 }
 
 .maxValue {
@@ -23,10 +23,12 @@
 .startValue {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 25px;
     margin-bottom: 15px;
 }
 
 .input {
     width: 150px;
+    border-radius: 7px;
+    border: none;
 }

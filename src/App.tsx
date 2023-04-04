@@ -9,7 +9,7 @@ function App() {
 
     const buttonIncrease = () => {
         // let result = num < 5 ? num + 1 : 5
-       setNum(prevNum => prevNum +1)
+        setNum(prevNum => prevNum + 1)
     }
 
     const buttonReset = () => {
@@ -17,17 +17,17 @@ function App() {
     }
 
     return (
-    <div className="App">
+        <div className="App">
 
-        <Settings />
+            <Settings/>
 
-      <Counter
-          buttonIncrease={buttonIncrease}
-          buttonResetHandler={buttonReset}
-          num={num}
-      />
-    </div>
-  );
+            <Counter
+                buttonIncrease={buttonIncrease}
+                buttonResetHandler={buttonReset}
+                num={num}
+            />
+        </div>
+    );
 }
 
 export default App;

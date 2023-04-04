@@ -7,16 +7,17 @@ const Settings = () => {
         <div className={s.settings}>
 
             <div className={s.maxValue}>
-               <div className={s.settingsTitle}> Max value: </div>
+                <div className={s.settingsTitle}> Max value:</div>
                 <input className={s.input} type="number"/>
             </div>
 
             <div className={s.startValue}>
-                <div className={s.settingsTitle}> Start value: </div>
+                <div className={s.settingsTitle}> Start value:</div>
                 <input className={s.input} type="number"/>
             </div>
 
-            <SuperButton name={'set'} callBack={ ()=> {} } />
+            <SuperButton name={'set'} callBack={() => {
+            }}/>
 
         </div>
     );
