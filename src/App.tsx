@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter';
+import Settings from './components/Settings/Settings';
 
 function App() {
 
@@ -17,6 +18,9 @@ function App() {
 
     return (
     <div className="App">
+
+        <Settings />
+
       <Counter
           buttonIncrease={buttonIncrease}
           buttonResetHandler={buttonReset}
