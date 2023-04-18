@@ -12,6 +12,10 @@ function App() {
         setNum(prevNum => prevNum + 1)
     }
 
+    const buttonDecrease = () => {
+        setNum(prevNum => prevNum - 1)
+    }
+
     const buttonReset = () => {
         setNum(0)
     }
@@ -24,6 +28,7 @@ function App() {
             <Counter
                 buttonIncrease={buttonIncrease}
                 buttonResetHandler={buttonReset}
+                buttonDecrease={buttonDecrease}
                 num={num}
             />
         </div>
