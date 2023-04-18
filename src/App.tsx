@@ -6,6 +6,8 @@ import Settings from './components/Settings/Settings';
 function App() {
 
     const [num, setNum] = useState<number>(0)
+    //const [maxValue, setMaxValue] = useState(5)
+    //const [minValue, setMinValue] = useState(0)
 
     const buttonIncrease = () => {
         // let result = num < 5 ? num + 1 : 5
