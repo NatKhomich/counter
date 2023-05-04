@@ -3,7 +3,6 @@ import s from './Settings.module.css'
 import SuperButton from '../SuperButton/SuperButton';
 
 
-
 const Settings = () => {
 
     return (
