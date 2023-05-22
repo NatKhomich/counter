@@ -2,27 +2,26 @@ import React from 'react';
 import s from './Counter.module.css'
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css'
-/*import DisplayCounter from '../Counter/DisplayCounter/DisplayCounter';*/
 
 type CounterType = {
-    buttonIncrease: () => void
-    buttonDecrease: () => void
-    buttonReset: () => void
-    value: number
+    increaseStartValue: () => void
+    decreaseStartValue: () => void
+    resetValue: () => void
+    startValue: number
 }
 
 export const Counter = (props: CounterType) => {
 
     const ButtonIncreaseHandler = () => {
-        props.buttonIncrease()
+        props.increaseStartValue()
     }
 
     const ButtonDecreaseHandler = () => {
-        props.buttonDecrease()
+        props.decreaseStartValue()
     }
 
     const ButtonResetHandler = () => {
-        props.buttonReset()
+        props.resetValue()
     }
 
     return (
@@ -30,13 +29,14 @@ export const Counter = (props: CounterType) => {
 
             {/*дисплей*/}
             <div className={s.displayBlock}>
-                <div className={props.value === 5 ? s.numberRed : s.number}> {props.value} </div>
+                <div className={props.startValue === 5 ? s.numberRed : s.number}> {props.startValue} </div>
             </div>
 
+           {/* 3 кнопки + - reset*/}
             <div className={sBtn.button}>
-                <Button disabled={props.value === 5} name={'+'} callBack={ButtonIncreaseHandler}/>
-                <Button disabled={props.value === 0} name={'-'} callBack={ButtonDecreaseHandler}/>
-                <Button disabled={props.value === 0} name={'reset'} callBack={ButtonResetHandler}/>
+                <Button disabled={props.startValue === 5} name={'+'} callBack={ButtonIncreaseHandler}/>
+                <Button disabled={props.startValue === 0} name={'-'} callBack={ButtonDecreaseHandler}/>
+                <Button disabled={props.startValue === 0} name={'reset'} callBack={ButtonResetHandler}/>
             </div>
         </div>
     )

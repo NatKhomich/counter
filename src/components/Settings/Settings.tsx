@@ -2,19 +2,31 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './Settings.module.css'
 import Button from '../Button/Button';
 
+type SettingsType = {
+    startValue: number
+    maxValue: number
 
-const Settings = () => {
+    settingsMaxValue: (maxValue: number) => void
+    settingsStartValue: (startValue: number) => void
+}
 
-    const [maxValue, setMaxValue] = useState<number>(5)
-    const [startValue, setStartValue] = useState<number>(0)
+const Settings = (props: SettingsType) => {
+
+    /*const [maxValue, setMaxValue] = useState<number>(5)
+    const [startValue, setStartValue] = useState<number>(0)*/
 
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили макс значение
-        setMaxValue(Number(e.currentTarget.value))
+        props.settingsMaxValue(+e.currentTarget.value)
+        //console.log(e.currentTarget.value)
     }
 
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили мин значение
-        setStartValue(Number(e.currentTarget.value))
+        props.settingsStartValue(+e.currentTarget.value)
+    }
+
+    const onClickSet = () => {
+
     }
 
     return (
@@ -24,8 +36,8 @@ const Settings = () => {
                 <div className={s.settingsTitle}> Max value:</div>
                 <input className={s.input}
                        type="number"
-                       value={maxValue}
-                       onChange={ maxValueHandler }
+                    //value={props.maxValue}
+                       onChange={maxValueHandler}
                 />
             </div>
 
@@ -33,13 +45,14 @@ const Settings = () => {
                 <div className={s.settingsTitle}> Start value:</div>
                 <input className={s.input}
                        type="number"
-                       value={startValue}
-                       onChange={ minValueHandler }
+                       //value={props.startValue}
+                       onChange={minValueHandler}
 
                 />
             </div>
 
-            <Button name={'set'} callBack={ ()=> {} }/>
+            <Button name={'set'} callBack={() => {
+            }}/>
 
         </div>
     );

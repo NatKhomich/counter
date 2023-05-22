@@ -5,35 +5,58 @@ import Settings from './components/Settings/Settings';
 
 function App() {
 
-    const [value, setValue] = useState<number>(0)
-    //const [maxValue, setMaxValue] = useState(5)
-    //const [minValue, setMinValue] = useState(0)
+    //const [value, setValue] = useState<number>(0)
 
-    const buttonIncrease = () => {
-        // let result = num < 5 ? num + 1 : 5
-        setValue(prevNum => prevNum + 1)
+    const [startValue, setStartValue] = useState<number>(0)
+
+    const [maxValue, setMaxValue] = useState<number>(5)
+
+
+    const increaseStartValue = () => {
+        setStartValue(num => num + 1)
     }
 
-    const buttonDecrease = () => {
-        setValue(prevNum => prevNum - 1)
+    const decreaseStartValue = () => {
+        setStartValue(num => num - 1)
     }
 
-    const buttonReset = () => {
-        setValue(0)
+    const resetValue = () => {
+        setStartValue(0)
+    }
+
+    const settingsMaxValue = (maxValue: number) => {
+        setMaxValue(maxValue)
+        console.log(maxValue)
+    }
+
+    const settingsStartValue = (startValue: number) => {
+        setStartValue(startValue)
+        console.log(startValue)
+    }
+
+    const setButton = () => {
+
     }
 
     return (
         <div className="App">
 
-            <Settings/>
+            <Settings startValue={startValue}
+                      settingsStartValue={settingsStartValue}
+
+                      maxValue={maxValue}
+                      settingsMaxValue={settingsMaxValue}
+
+
+            />
 
             <Counter
-                buttonIncrease={buttonIncrease} //увеличить
-                buttonDecrease={buttonDecrease} //уменьшить
+                increaseStartValue={increaseStartValue} //увеличить
+                decreaseStartValue={decreaseStartValue} //уменьшить
 
-                buttonReset={buttonReset} //перезагрузить
+                resetValue={resetValue} //перезагрузить
 
-                value={value}
+                startValue={startValue}
             />
         </div>
     );
