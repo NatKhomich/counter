@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './Settings.module.css'
-import SuperButton from '../SuperButton/SuperButton';
+import Button from '../Button/Button';
 
 
 const Settings = () => {
+
+    const [maxValue, setMaxValue] = useState<number>(5)
+    const [startValue, setStartValue] = useState<number>(0)
+
+
+    const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили макс значение
+        setMaxValue(Number(e.currentTarget.value))
+    }
+
+    const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили мин значение
+        setStartValue(Number(e.currentTarget.value))
+    }
 
     return (
         <div className={s.settings}>
@@ -12,6 +24,8 @@ const Settings = () => {
                 <div className={s.settingsTitle}> Max value:</div>
                 <input className={s.input}
                        type="number"
+                       value={maxValue}
+                       onChange={ maxValueHandler }
                 />
             </div>
 
@@ -19,12 +33,13 @@ const Settings = () => {
                 <div className={s.settingsTitle}> Start value:</div>
                 <input className={s.input}
                        type="number"
+                       value={startValue}
+                       onChange={ minValueHandler }
 
                 />
             </div>
 
-            <SuperButton name={'set'} callBack={() => {
-            }}/>
+            <Button name={'set'} callBack={ ()=> {} }/>
 
         </div>
     );

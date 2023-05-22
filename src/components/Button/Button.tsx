@@ -1,13 +1,13 @@
 import React from 'react';
-import s from './SuperButton.module.css'
+import s from './Button.module.css'
 
-type SuperButtonType = {
+type ButtonType = {
     name: string
     callBack: ()=> void
     disabled?: boolean
 }
 
-const SuperButton = (props: SuperButtonType) => {
+const Button = (props: ButtonType) => {
     return (
             <button className={s.buttonStyled}
                     disabled={props.disabled}
@@ -16,4 +16,4 @@ const SuperButton = (props: SuperButtonType) => {
     );
 };
 
-export default SuperButton;
+export default Button;

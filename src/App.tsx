@@ -1,25 +1,25 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Counter} from './components/Counter';
+import {Counter} from './components/Counter/Counter';
 import Settings from './components/Settings/Settings';
 
 function App() {
 
-    const [num, setNum] = useState<number>(0)
+    const [value, setValue] = useState<number>(0)
     //const [maxValue, setMaxValue] = useState(5)
     //const [minValue, setMinValue] = useState(0)
 
     const buttonIncrease = () => {
         // let result = num < 5 ? num + 1 : 5
-        setNum(prevNum => prevNum + 1)
+        setValue(prevNum => prevNum + 1)
     }
 
     const buttonDecrease = () => {
-        setNum(prevNum => prevNum - 1)
+        setValue(prevNum => prevNum - 1)
     }
 
     const buttonReset = () => {
-        setNum(0)
+        setValue(0)
     }
 
     return (
@@ -28,10 +28,12 @@ function App() {
             <Settings/>
 
             <Counter
-                buttonIncrease={buttonIncrease}
-                buttonResetHandler={buttonReset}
-                buttonDecrease={buttonDecrease}
-                num={num}
+                buttonIncrease={buttonIncrease} //увеличить
+                buttonDecrease={buttonDecrease} //уменьшить
+
+                buttonReset={buttonReset} //перезагрузить
+
+                value={value}
             />
         </div>
     );
