@@ -10,41 +10,45 @@ function App() {
     const [maxValue, setMaxValue] = useState<number>(5)
 
     const [counter, setCounter] = useState(0)
-    const [error, setError] = useState<string|null>(null)
+    const [error, setError] = useState(false)
 
+    const [displayCounter, setDisplayCounter] = useState(false)
+
+
+    const isInitDataWrong =
+        maxValue < 1 || startValue < 0 || startValue >= maxValue //иниц данные не верны
 
     const increaseStartValue = () => {
         setCounter(num => Number(num) + 1)
-        setError(null)
+        setError(false)
     }
-
     /*const decreaseStartValue = () => {
         setStartValue(num => num - 1)
         console.log(startValue)
     }*/
-
     const resetValue = () => {
         setCounter(startValue)
     }
 
     const settingsMaxValue = (maxValue: number) => {
-        setMaxValue(maxValue)
-       // console.log(maxValue)
+        setMaxValue(Math.round(maxValue))
     }
-
     const settingsStartValue = (startValue: number) => {
-        setStartValue(startValue)
+        setStartValue(Math.round(startValue))
     }
-
 
     const setButton = () => {
-        if(maxValue <= startValue || maxValue<= 0 || startValue <= 0) {
-            setError('incorrect value!')
+        if(isInitDataWrong) {
+            setError(true)
+            setDisplayCounter(false)
+
         } else {
-            setCounter(startValue)
+            setCounter(Math.round(startValue))
+            setError(false)
+            setDisplayCounter(true)
+
         }
     }
-
    /* const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setStartValue(+e.currentTarget.value)
     }
@@ -63,17 +67,20 @@ function App() {
                       settingsMaxValue={settingsMaxValue}
 
                       setButton={setButton}
+                      error={error}
             />
 
             <Counter
                 increaseStartValue={increaseStartValue} //увеличить
-                //decreaseStartValue={decreaseStartValue} //уменьшить
                 resetValue={resetValue} //перезагрузить
 
                 startValue={counter}
                 maxValue={maxValue}
 
                 error={error}
+                displayCounter={displayCounter}
+
+                //decreaseStartValue={decreaseStartValue} //уменьшить
             />
         </div>
     );

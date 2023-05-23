@@ -4,7 +4,7 @@ import s from './Button.module.css'
 type ButtonType = {
     name: string
     callBack: ()=> void
-    disabled?: boolean
+    disabled?: boolean| undefined 
 }
 
 const Button = (props: ButtonType) => {

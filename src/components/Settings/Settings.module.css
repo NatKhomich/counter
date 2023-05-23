@@ -32,3 +32,10 @@
     border-radius: 7px;
     border: none;
 }
+
+.error {
+    width: 150px;
+    border-radius: 7px;
+    border: none;
+    background-color: red;
+}

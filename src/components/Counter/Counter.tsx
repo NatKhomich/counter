@@ -2,18 +2,20 @@ import React from 'react';
 import s from './Counter.module.css'
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css'
-import {isEqual} from '../../helpers/helpers';
 
 type CounterType = {
     increaseStartValue: () => void
-    //decreaseStartValue: () => void
     resetValue: () => void
 
     startValue: number
     maxValue: number
 
-    error: string|null
+    error: boolean
+   displayCounter: boolean
+
+
     //setCounter: number
+    //decreaseStartValue: () => void
 }
 
 export const Counter = (props: CounterType) => {
@@ -35,13 +37,22 @@ export const Counter = (props: CounterType) => {
 
             {/*дисплей*/}
             <div className={s.displayBlock}>
-                <div className={isEqual(props.startValue,props.maxValue) ? s.numberRed : s.number}> {props.startValue} </div>
-                {props.error && <div className={s.errorMessage}> {props.error} </div>}
+
+                {/*<div> enter value and press "set" </div>*/}
+
+                { props.displayCounter ? <div className={props.startValue===props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
+               : props.error && <div className={s.errorMessage}> incorrect value! </div>
+                }
+
+               {/* <div className={props.startValue===props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
+                {props.error && <div className={s.errorMessage}> incorrect value! </div>}*/}
             </div>
 
            {/* 3 кнопки + - reset*/}
             <div className={sBtn.button}>
-                <Button disabled={isEqual(props.startValue,props.maxValue)} name={'+'} callBack={ButtonIncreaseHandler}/>
+                <Button disabled={props.error || props.maxValue === props.startValue }
+                        name={'+'}
+                        callBack={ButtonIncreaseHandler}/>
                 {/*<Button disabled={props.startValue === 0} name={'-'} callBack={ButtonDecreaseHandler}/>*/}
                 <Button disabled={props.startValue===0} name={'reset'} callBack={ButtonResetHandler}/>
             </div>
