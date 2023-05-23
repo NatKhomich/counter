@@ -7,14 +7,11 @@ type CounterType = {
     increaseStartValue: () => void
     //decreaseStartValue: () => void
     resetValue: () => void
-    startValue: number
 
+    startValue: number
     maxValue: number
 
-    setButton: ()=> void
-
-    setCounter: number
-   // onChangeStartValueHandler: ()=> void
+    //setCounter: number
 }
 
 export const Counter = (props: CounterType) => {
@@ -23,16 +20,12 @@ export const Counter = (props: CounterType) => {
         props.increaseStartValue()
     }
 
-  /*  const ButtonDecreaseHandler = () => {
+    /*const ButtonDecreaseHandler = () => {
         props.decreaseStartValue()
     }*/
 
     const ButtonResetHandler = () => {
         props.resetValue()
-    }
-
-    const setButton = () => {
-        props.setButton()
     }
 
     return (
@@ -46,7 +39,7 @@ export const Counter = (props: CounterType) => {
            {/* 3 кнопки + - reset*/}
             <div className={sBtn.button}>
                 <Button disabled={props.startValue === props.maxValue} name={'+'} callBack={ButtonIncreaseHandler}/>
-               {/* <Button disabled={props.startValue === 0} name={'-'} callBack={ButtonDecreaseHandler}/>*/}
+                {/*<Button disabled={props.startValue === 0} name={'-'} callBack={ButtonDecreaseHandler}/>*/}
                 <Button disabled={props.startValue === 0} name={'reset'} callBack={ButtonResetHandler}/>
             </div>
         </div>

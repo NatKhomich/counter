@@ -1,13 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
-//import Settings from './components/Settings/Settings';
 import s from './components/Settings/Settings.module.css';
 import Button from './components/Button/Button';
 
 function App() {
-
-    //const [value, setValue] = useState<number>(0)
 
     const [startValue, setStartValue] = useState<number>(0)
     const [maxValue, setMaxValue] = useState<number>(5)
@@ -16,14 +13,17 @@ function App() {
 
     const increaseStartValue = () => {
         setStartValue(num => num + 1)
+        console.log(startValue)
     }
 
-   /* const decreaseStartValue = () => {
+    /*const decreaseStartValue = () => {
         setStartValue(num => num - 1)
+        console.log(startValue)
     }*/
 
     const resetValue = () => {
         setStartValue(0)
+        console.log(startValue)
     }
 
     /*const settingsMaxValue = (maxValue: number) => {
@@ -36,12 +36,6 @@ function App() {
         //console.log(startValue)
     }*/
 
-    /*const setButton = () => {
-        if(maxValue > 1 || startValue > 0) {
-            setSetCounter(startValue)
-            console.log(startValue)
-        }
-    }*/
 
     const setButton = () => {
         setSetCounter(startValue)
@@ -74,27 +68,24 @@ function App() {
             />*/}
 
             <div className={s.settings}>
-
                 <div className={s.maxValue}>
                     <div className={s.settingsTitle}> Max value:</div>
                     <input className={s.input}
                            type="number"
-                        value={maxValue}
-                           onChange={ onChangeMaxValueHandler }
+                           value={maxValue}
+                           onChange={onChangeMaxValueHandler}
                     />
                 </div>
-
                 <div className={s.startValue}>
                     <div className={s.settingsTitle}> Start value:</div>
                     <input className={s.input}
                            type="number"
-                        value={startValue}
-                           onChange={ onChangeStartValueHandler }
-
+                           value={startValue}
+                           onChange={onChangeStartValueHandler}
                     />
                 </div>
 
-                <Button name={'set'} callBack={ setButton }/>
+                <Button name={'set'} callBack={setButton}/>
 
             </div>
 
@@ -102,17 +93,12 @@ function App() {
             <Counter
                 increaseStartValue={increaseStartValue} //увеличить
                 //decreaseStartValue={decreaseStartValue} //уменьшить
-
                 resetValue={resetValue} //перезагрузить
 
                 startValue={startValue}
-
                 maxValue={maxValue}
 
-                setButton={setButton}
-
-                setCounter={setCounter}
-                //onChangeStartValueHandler={onChangeStartValueHandler}
+                //setCounter={setCounter}
             />
         </div>
     );
