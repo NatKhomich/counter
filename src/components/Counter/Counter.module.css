@@ -13,7 +13,7 @@
     background-color: #219ebc;
     margin: 0 auto;
     border-radius: 10px;
-    height: 100px;
+    height: 110px;
 }
 
 .number {
@@ -26,6 +26,13 @@
     font-size: 60px;
     font-weight: 600;
     color: red;
+}
+
+.errorMessage {
+    font-weight: 600;
+    font-size: 20px;
+    color: red;
+    margin-bottom: 10px;
 }
 
 

@@ -2,23 +2,18 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './Settings.module.css'
 import Button from '../Button/Button';
 
-/*
 type SettingsType = {
     startValue: number
     maxValue: number
 
-    settingsMaxValue: (maxValue: number) => void
-    settingsStartValue: (startValue: number) => void
+    settingsStartValue: (startValue: number)=> void
+    settingsMaxValue: (maxValue: number)=> void
 
-    //setButton: ()=> void
-    setCounter: number
+    setButton: ()=> void
+
 }
 
 const Settings = (props: SettingsType) => {
-
-    /!*const [maxValue, setMaxValue] = useState<number>(5)
-    const [startValue, setStartValue] = useState<number>(0)*!/
-
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили макс значение
         props.settingsMaxValue(+e.currentTarget.value)
@@ -31,31 +26,29 @@ const Settings = (props: SettingsType) => {
 
 
     return (
-        <div className={s.settings}>
 
+        <div className={s.settings}>
             <div className={s.maxValue}>
                 <div className={s.settingsTitle}> Max value:</div>
                 <input className={s.input}
                        type="number"
-                    //value={props.maxValue}
+                       value={props.maxValue}
                        onChange={maxValueHandler}
                 />
             </div>
-
             <div className={s.startValue}>
                 <div className={s.settingsTitle}> Start value:</div>
                 <input className={s.input}
                        type="number"
-                       //value={props.startValue}
+                       value={props.startValue}
                        onChange={minValueHandler}
-
                 />
             </div>
 
-            <Button name={'set'} callBack={ ()=> {} }/>
+            <Button name={'set'} callBack={()=> props.setButton()}/>
 
         </div>
     );
 };
 
-export default Settings;*/
+export default Settings;
