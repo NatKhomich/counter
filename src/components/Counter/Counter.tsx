@@ -14,6 +14,7 @@ type CounterType = {
     setButton: ()=> void
 
     setCounter: number
+   // onChangeStartValueHandler: ()=> void
 }
 
 export const Counter = (props: CounterType) => {
@@ -30,9 +31,9 @@ export const Counter = (props: CounterType) => {
         props.resetValue()
     }
 
-   /* const setButton = () => {
+    const setButton = () => {
         props.setButton()
-    }*/
+    }
 
     return (
         <div className={s.counter}>

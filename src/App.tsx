@@ -10,7 +10,6 @@ function App() {
     //const [value, setValue] = useState<number>(0)
 
     const [startValue, setStartValue] = useState<number>(0)
-
     const [maxValue, setMaxValue] = useState<number>(5)
 
     const [setCounter, setSetCounter] = useState(startValue)
@@ -37,17 +36,18 @@ function App() {
         //console.log(startValue)
     }*/
 
-    const setButton = () => {
+    /*const setButton = () => {
         if(maxValue > 1 || startValue > 0) {
             setSetCounter(startValue)
             console.log(startValue)
         }
+    }*/
+
+    const setButton = () => {
+        setSetCounter(startValue)
+        console.log(startValue)
     }
 
-  /*  const setButton = () => {
-       // setStartValue(start)
-    }
-*/
     const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setStartValue(+e.currentTarget.value)
         console.log(+e.currentTarget.value)
@@ -112,6 +112,7 @@ function App() {
                 setButton={setButton}
 
                 setCounter={setCounter}
+                //onChangeStartValueHandler={onChangeStartValueHandler}
             />
         </div>
     );
