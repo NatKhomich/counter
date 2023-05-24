@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Counter.module.css'
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css'
+import {ErrorType} from '../../App';
 
 type CounterType = {
     increaseStartValue: () => void
@@ -10,7 +11,7 @@ type CounterType = {
     startValue: number
     maxValue: number
 
-    error: boolean
+    error: ErrorType
     displayCounter: boolean
 
     //decreaseStartValue: () => void
@@ -34,18 +35,21 @@ export const Counter = (props: CounterType) => {
             {/*дисплей*/}
             <div className={s.displayBlock}>
 
-                {/*{ <div> enter value and press "set" </div>  : ''}*/}
+                {!props.displayCounter && props.error === 'enter' && <div className={s.text}> enter value and press "set" </div>}
 
                 {props.displayCounter ? <div
                         className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
-                    : props.error && <div className={s.errorMessage}> incorrect value! </div>
+                    : props.error === 'error' && <div className={s.errorMessage}> incorrect value! </div>
                 }
+              {/*  {
+                    props.startValue > props.maxValue  && <div>error</div>
+                }*/}
 
             </div>
 
             {/* 3 кнопки + - reset*/}
             <div className={sBtn.button}>
-                <Button disabled={props.error || props.maxValue === props.startValue}
+                <Button disabled={props.error === 'error' || props.maxValue === props.startValue}
                         name={'+'}
                         callBack={ButtonIncreaseHandler}/>
                 {/*<Button disabled={props.startValue === 0} name={'-'} callBack={ButtonDecreaseHandler}/>*/}

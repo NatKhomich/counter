@@ -22,6 +22,13 @@
     color: black;
 }
 
+.text {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    padding-top: 40px;
+}
+
 .numberRed {
     font-size: 60px;
     font-weight: 600;
