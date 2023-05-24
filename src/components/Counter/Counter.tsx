@@ -11,7 +11,7 @@ type CounterType = {
     maxValue: number
 
     error: boolean
-   displayCounter: boolean
+    displayCounter: boolean
 
     //decreaseStartValue: () => void
 }
@@ -34,22 +34,22 @@ export const Counter = (props: CounterType) => {
             {/*дисплей*/}
             <div className={s.displayBlock}>
 
-               {/* { props.autoFocus ?  <div> enter value and press "set" </div> : '' }*/}
+                {/*{ <div> enter value and press "set" </div>  : ''}*/}
 
-
-                { props.displayCounter ? <div className={props.startValue===props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
-               : props.error && <div className={s.errorMessage}> incorrect value! </div>
+                {props.displayCounter ? <div
+                        className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
+                    : props.error && <div className={s.errorMessage}> incorrect value! </div>
                 }
 
             </div>
 
-           {/* 3 кнопки + - reset*/}
+            {/* 3 кнопки + - reset*/}
             <div className={sBtn.button}>
-                <Button disabled={props.error || props.maxValue === props.startValue }
+                <Button disabled={props.error || props.maxValue === props.startValue}
                         name={'+'}
                         callBack={ButtonIncreaseHandler}/>
                 {/*<Button disabled={props.startValue === 0} name={'-'} callBack={ButtonDecreaseHandler}/>*/}
-                <Button disabled={props.startValue===0} name={'reset'} callBack={ButtonResetHandler}/>
+                <Button disabled={props.startValue === 0} name={'reset'} callBack={ButtonResetHandler}/>
             </div>
         </div>
     )

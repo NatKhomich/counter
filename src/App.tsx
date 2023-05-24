@@ -37,7 +37,7 @@ function App() {
     }
 
     const setButton = () => {
-        if(isInitDataFalse) {
+        if (isInitDataFalse) {
             setError(true)
             setDisplayCounter(false)
 
@@ -45,7 +45,6 @@ function App() {
             setCounter(Math.round(startValue))
             setError(false)
             setDisplayCounter(true)
-
         }
     }
 
@@ -60,17 +59,17 @@ function App() {
 
                       setButton={setButton}
                       error={error}
+
             />
 
-            <Counter
-                increaseStartValue={increaseStartValue} //увеличить
-                resetValue={resetValue} //перезагрузить
+            <Counter increaseStartValue={increaseStartValue} //увеличить
+                     resetValue={resetValue} //перезагрузить
 
-                startValue={counter}
-                maxValue={maxValue}
+                     startValue={counter}
+                     maxValue={maxValue}
 
-                error={error}
-                displayCounter={displayCounter}
+                     error={error}
+                     displayCounter={displayCounter}
 
                 //decreaseStartValue={decreaseStartValue} //уменьшить
             />

@@ -11,6 +11,7 @@ type SettingsType = {
 
     setButton: ()=> void
     error: boolean
+
    }
 
 const Settings = (props: SettingsType) => {
@@ -33,6 +34,7 @@ const Settings = (props: SettingsType) => {
                        type="number"
                        value={props.maxValue}
                        onChange={maxValueHandler}
+
 
                 />
             </div>
