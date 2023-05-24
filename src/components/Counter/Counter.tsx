@@ -13,8 +13,6 @@ type CounterType = {
     error: boolean
    displayCounter: boolean
 
-
-    //setCounter: number
     //decreaseStartValue: () => void
 }
 
@@ -23,11 +21,9 @@ export const Counter = (props: CounterType) => {
     const ButtonIncreaseHandler = () => {
         props.increaseStartValue()
     }
-
     /*const ButtonDecreaseHandler = () => {
         props.decreaseStartValue()
     }*/
-
     const ButtonResetHandler = () => {
         props.resetValue()
     }
@@ -38,14 +34,13 @@ export const Counter = (props: CounterType) => {
             {/*дисплей*/}
             <div className={s.displayBlock}>
 
-                {/*<div> enter value and press "set" </div>*/}
+               {/* { props.autoFocus ?  <div> enter value and press "set" </div> : '' }*/}
+
 
                 { props.displayCounter ? <div className={props.startValue===props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
                : props.error && <div className={s.errorMessage}> incorrect value! </div>
                 }
 
-               {/* <div className={props.startValue===props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
-                {props.error && <div className={s.errorMessage}> incorrect value! </div>}*/}
             </div>
 
            {/* 3 кнопки + - reset*/}

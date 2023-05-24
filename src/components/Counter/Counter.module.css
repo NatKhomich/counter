@@ -30,9 +30,9 @@
 
 .errorMessage {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 30px;
     color: red;
-    margin-bottom: 10px;
+    padding-top: 30px;
 }
 
 

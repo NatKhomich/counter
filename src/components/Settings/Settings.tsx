@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Settings.module.css'
 import Button from '../Button/Button';
 
@@ -11,20 +11,18 @@ type SettingsType = {
 
     setButton: ()=> void
     error: boolean
-
-}
+   }
 
 const Settings = (props: SettingsType) => {
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили макс значение
         props.settingsMaxValue(+e.currentTarget.value)
-        //console.log(e.currentTarget.value)
+
     }
 
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили мин значение
         props.settingsStartValue(+e.currentTarget.value)
     }
-
 
     return (
 
@@ -35,6 +33,7 @@ const Settings = (props: SettingsType) => {
                        type="number"
                        value={props.maxValue}
                        onChange={maxValueHandler}
+
                 />
             </div>
             <div className={s.startValue}>
@@ -43,12 +42,12 @@ const Settings = (props: SettingsType) => {
                        type="number"
                        value={props.startValue}
                        onChange={minValueHandler}
+
                 />
             </div>
 
             <Button name={'set'}
                     callBack={()=> props.setButton()}
-
 
             />
 

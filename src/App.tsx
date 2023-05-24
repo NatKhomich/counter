@@ -8,14 +8,13 @@ function App() {
 
     const [startValue, setStartValue] = useState<number>(0)
     const [maxValue, setMaxValue] = useState<number>(5)
-
     const [counter, setCounter] = useState(0)
-    const [error, setError] = useState(false)
 
+    const [error, setError] = useState(false)
     const [displayCounter, setDisplayCounter] = useState(false)
 
 
-    const isInitDataWrong =
+    const isInitDataFalse =
         maxValue < 1 || startValue < 0 || startValue >= maxValue //иниц данные не верны
 
     const increaseStartValue = () => {
@@ -38,7 +37,7 @@ function App() {
     }
 
     const setButton = () => {
-        if(isInitDataWrong) {
+        if(isInitDataFalse) {
             setError(true)
             setDisplayCounter(false)
 
@@ -49,13 +48,6 @@ function App() {
 
         }
     }
-   /* const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(+e.currentTarget.value)
-    }
-
-    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(+e.currentTarget.value)
-    }*/
 
     return (
         <div className="App">
