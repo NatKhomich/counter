@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import Settings from './components/Settings/Settings';
+
 export type ErrorType = 'error' | 'none' | 'enter'
 
 function App() {
@@ -12,7 +13,6 @@ function App() {
 
     const [error, setError] = useState<ErrorType>('enter')
     const [displayCounter, setDisplayCounter] = useState(false)
-    console.log(error)
     //const [disabled, setDisabled] = useState(false)
 
     useEffect( ()=> {
@@ -22,24 +22,19 @@ function App() {
            let newMax =  JSON.parse(max)
           setMaxValue(newMax)
         }
-
         if (start) {
             setStartValue( JSON.parse(start))
         }
-      if(max && start) {
+      /*if(max && start) {
           if(max <= start) {
               setError('error')
           }
-      }
+      }*/
     },[] )
-
-
-
     useEffect(() => {
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
         localStorage.setItem('startValue', JSON.stringify(startValue))
     }, [maxValue, startValue])
-
 
     const isInitDataFalse =
         maxValue < 1 || startValue < 0 || startValue >= maxValue //иниц данные не верны
@@ -57,20 +52,26 @@ function App() {
     }
 
     const settingsMaxValue = (maxValue: number) => {
-        if(maxValue <= startValue) {
+       /* if(maxValue < 1) {
             setError('error')
         } else {
             setError('none')
-        }
+        }*/
         setMaxValue(Math.round(maxValue))
     }
     const settingsStartValue = (startValue: number) => {
+        /*if( startValue < 0) {
+            setError('error')
+
+        } else {
+            setError('none')
+        }*/
         setStartValue(Math.round(startValue))
     }
 
     const setButton = () => {
         if (isInitDataFalse) {
-            setError('error')
+           setError('error')
             setDisplayCounter(false)
 
         } else {
@@ -106,6 +107,7 @@ function App() {
 
                 //decreaseStartValue={decreaseStartValue} //уменьшить
             />
+
         </div>
     );
 }

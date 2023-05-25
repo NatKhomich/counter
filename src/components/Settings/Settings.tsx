@@ -23,7 +23,6 @@ const Settings = (props: SettingsType) => {
         props.settingsMaxValue(+e.currentTarget.value)
 
     }
-
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили мин значение
         props.settingsStartValue(+e.currentTarget.value)
     }
@@ -34,12 +33,9 @@ const Settings = (props: SettingsType) => {
             <div className={s.maxValue}>
                 <div className={s.settingsTitle}> Max value:</div>
                 <input className={props.error === 'error' ? s.error : s.input}
-                /*<input className={props.isInitDataFalse ? s.error : s.input}*/
                        type="number"
                        value={props.maxValue}
                        onChange={maxValueHandler}
-
-
                 />
             </div>
             <div className={s.startValue}>
@@ -48,7 +44,6 @@ const Settings = (props: SettingsType) => {
                        type="number"
                        value={props.startValue}
                        onChange={minValueHandler}
-
                 />
             </div>
 
@@ -56,6 +51,7 @@ const Settings = (props: SettingsType) => {
                     callBack={()=> props.setButton()}
 
             />
+
 
         </div>
     );

@@ -37,23 +37,23 @@ export const Counter = (props: CounterType) => {
 
                 {!props.displayCounter && props.error === 'enter' && <div className={s.text}> enter value and press "set" </div>}
 
-                {props.displayCounter ? <div
-                        className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
+                {props.displayCounter
+                    ? <div className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
                     : props.error === 'error' && <div className={s.errorMessage}> incorrect value! </div>
                 }
-              {/*  {
-                    props.startValue > props.maxValue  && <div>error</div>
-                }*/}
 
             </div>
 
             {/* 3 кнопки + - reset*/}
             <div className={sBtn.button}>
-                <Button disabled={props.error === 'error' || props.maxValue === props.startValue}
+                <Button disabled={props.error === 'error' ||
+                    props.maxValue === props.startValue ||
+                    !props.displayCounter ||
+                    props.maxValue <= props.startValue}
                         name={'+'}
                         callBack={ButtonIncreaseHandler}/>
                 {/*<Button disabled={props.startValue === 0} name={'-'} callBack={ButtonDecreaseHandler}/>*/}
-                <Button disabled={props.startValue === 0} name={'reset'} callBack={ButtonResetHandler}/>
+                <Button disabled={props.startValue === 0 || props.error ==='error'} name={'reset'} callBack={ButtonResetHandler}/>
             </div>
         </div>
     )
