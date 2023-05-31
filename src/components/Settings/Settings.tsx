@@ -48,6 +48,7 @@ const Settings = (props: SettingsType) => {
 
             <Button name={'set'}
                     callBack={() => props.setButton()}
+                    disabled={props.error==='error'}
 
             />
 

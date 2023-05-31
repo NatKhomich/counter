@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Counter.module.css'
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css'
-import {ErrorType} from '../../App';
+import {DisplayCounterType, ErrorType} from '../../App';
 
 type CounterType = {
     increaseStartValue: () => void
@@ -12,7 +12,7 @@ type CounterType = {
     maxValue: number
 
     error: ErrorType
-    displayCounter: boolean
+    displayCounter: DisplayCounterType
 }
 
 export const Counter = (props: CounterType) => {
@@ -30,12 +30,11 @@ export const Counter = (props: CounterType) => {
             {/*дисплей*/}
             <div className={s.displayBlock}>
 
-                {!props.displayCounter && props.error === 'enter' && <div className={s.text}> enter value and press "set" </div>}
+                {props.displayCounter === 'startTitle' && props.error === 'enter' && <div className={s.text}> enter value and press "set" </div>}
 
-                {props.displayCounter
-                    ? <div className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>
-                    : props.error === 'error' && <div className={s.errorMessage}> incorrect value! </div>
-                }
+                {props.displayCounter === 'error' && props.error === 'error' ? <div className={s.errorMessage}> incorrect value! </div>
+                : props.displayCounter === 'startTitle' || props.displayCounter === 'none' ? <div className={s.text}> enter value and press "set" </div>
+                  :  <div className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div> }
 
             </div>
 

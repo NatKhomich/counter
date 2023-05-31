@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import Settings from './components/Settings/Settings';
-import {findAllByDisplayValue} from '@testing-library/react';
 
 export type ErrorType = 'error' | 'none' | 'enter'
+export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
     const [counter, setCounter] = useState(0)
 
     const [error, setError] = useState<ErrorType>('enter')
-    const [displayCounter, setDisplayCounter] = useState(false)
+    const [displayCounter, setDisplayCounter] = useState<DisplayCounterType>('none')
 
     useEffect( ()=> {
         let max = localStorage.getItem('maxValue')
@@ -25,11 +25,6 @@ function App() {
         if (start) {
             setStartValue( JSON.parse(start))
         }
-      /*if(max && start) {
-          if(max <= start) {
-              setError('error')
-          }
-      }*/
     },[] )
     useEffect(() => {
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
@@ -51,17 +46,21 @@ function App() {
     const settingsMaxValue = (maxValue: number) => {
         if(maxValue < 1 || maxValue <= startValue) {
             setError('error')
+            setDisplayCounter('error')
         } else {
             setError('none')
+            setDisplayCounter('startTitle')
         }
         setMaxValue(Math.round(maxValue))
     }
     const settingsStartValue = (startValue: number) => {
         if( startValue < 0 || startValue >= maxValue) {
             setError('error')
+            setDisplayCounter('error')
 
         } else {
             setError('none')
+            setDisplayCounter('startTitle')
         }
         setStartValue(Math.round(startValue))
     }
@@ -69,12 +68,12 @@ function App() {
     const setButton = () => {
         if (isInitDataFalse) {
            setError('error')
-            setDisplayCounter(false)
+            setDisplayCounter('error')
 
         } else {
             setCounter(Math.round(startValue))
             setError('none')
-            setDisplayCounter(true)
+            setDisplayCounter('number')
         }
     }
 
