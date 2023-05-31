@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import Settings from './components/Settings/Settings';
+import {findAllByDisplayValue} from '@testing-library/react';
 
 export type ErrorType = 'error' | 'none' | 'enter'
 
@@ -13,7 +14,6 @@ function App() {
 
     const [error, setError] = useState<ErrorType>('enter')
     const [displayCounter, setDisplayCounter] = useState(false)
-    //const [disabled, setDisabled] = useState(false)
 
     useEffect( ()=> {
         let max = localStorage.getItem('maxValue')
@@ -43,29 +43,26 @@ function App() {
         setCounter(num => Number(num) + 1)
         setError('none')
     }
-    /*const decreaseStartValue = () => {
-        setStartValue(num => num - 1)
-        console.log(startValue)
-    }*/
+
     const resetValue = () => {
         setCounter(startValue)
     }
 
     const settingsMaxValue = (maxValue: number) => {
-       /* if(maxValue < 1) {
+        if(maxValue < 1 || maxValue <= startValue) {
             setError('error')
         } else {
             setError('none')
-        }*/
+        }
         setMaxValue(Math.round(maxValue))
     }
     const settingsStartValue = (startValue: number) => {
-        /*if( startValue < 0) {
+        if( startValue < 0 || startValue >= maxValue) {
             setError('error')
 
         } else {
             setError('none')
-        }*/
+        }
         setStartValue(Math.round(startValue))
     }
 
@@ -104,8 +101,6 @@ function App() {
 
                      error={error}
                      displayCounter={displayCounter}
-
-                //decreaseStartValue={decreaseStartValue} //уменьшить
             />
 
         </div>

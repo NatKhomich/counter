@@ -7,15 +7,14 @@ type SettingsType = {
     startValue: number
     maxValue: number
 
-    settingsStartValue: (startValue: number)=> void
-    settingsMaxValue: (maxValue: number)=> void
+    settingsStartValue: (startValue: number) => void
+    settingsMaxValue: (maxValue: number) => void
 
-    setButton: ()=> void
+    setButton: () => void
     error: ErrorType
 
     isInitDataFalse: boolean
-
-   }
+}
 
 const Settings = (props: SettingsType) => {
 
@@ -48,7 +47,7 @@ const Settings = (props: SettingsType) => {
             </div>
 
             <Button name={'set'}
-                    callBack={()=> props.setButton()}
+                    callBack={() => props.setButton()}
 
             />
 
