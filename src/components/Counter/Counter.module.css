@@ -20,6 +20,7 @@
     font-size: 60px;
     font-weight: 600;
     color: black;
+    padding-top: 10px;
 }
 
 .text {
@@ -33,6 +34,7 @@
     font-size: 60px;
     font-weight: 600;
     color: red;
+    padding-top: 10px;
 }
 
 .errorMessage {

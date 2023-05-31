@@ -51,8 +51,6 @@ const Settings = (props: SettingsType) => {
                     disabled={props.error==='error'}
 
             />
-
-
         </div>
     );
 };
