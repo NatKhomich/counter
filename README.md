@@ -1,5 +1,11 @@
 # Getting Started with Create React App
 
+##Запуск приложения
+1. Скачиваете или клонируете репозиторий
+2. `yarn` -- установка пакетов
+3. `yarn start`
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
