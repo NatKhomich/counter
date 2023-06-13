@@ -5,13 +5,13 @@
     border-radius: 10px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #264653;
+    background-color: #669bbc;
 }
 
 .settingsTitle {
     font-size: 25px;
     font-weight: 600;
-    color: #219ebc;
+    color: #0d1b2a;
 }
 
 .maxValue {
@@ -37,5 +37,5 @@
     width: 150px;
     border-radius: 7px;
     border: none;
-    background-color: red;
+    background-color: #e71d36;
 }

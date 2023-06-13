@@ -1,8 +1,10 @@
 import React from 'react';
 import s from './Counter.module.css'
-import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css'
 import {DisplayCounterType, ErrorType} from '../../App';
+import Button from '../Button/Button';
+
+
 
 type CounterType = {
     increaseStartValue: () => void
@@ -30,11 +32,15 @@ export const Counter = (props: CounterType) => {
             {/*дисплей*/}
             <div className={s.displayBlock}>
 
-                {props.displayCounter === 'startTitle' && props.error === 'enter' && <div className={s.text}> enter value and press "set" </div>}
+                {props.displayCounter === 'startTitle' && props.error === 'enter' &&
+                    <div className={s.text}> enter value and press "set" </div>}
 
-                {props.displayCounter === 'error' && props.error === 'error' ? <div className={s.errorMessage}> incorrect value! </div>
-                : props.displayCounter === 'startTitle' || props.displayCounter === 'none' ? <div className={s.text}> enter value and press "set" </div>
-                  :  <div className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div> }
+                {props.displayCounter === 'error' && props.error === 'error' ?
+                    <div className={s.errorMessage}> incorrect value! </div>
+                    : props.displayCounter === 'startTitle' || props.displayCounter === 'none' ?
+                        <div className={s.text}> enter value and press "set" </div>
+                        : <div
+                            className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>}
 
             </div>
 
@@ -47,6 +53,8 @@ export const Counter = (props: CounterType) => {
                         name={'+'}
                         callBack={ButtonIncreaseHandler}/>
                 <Button disabled={props.startValue === 0 || props.error ==='error'} name={'reset'} callBack={ButtonResetHandler}/>
+
+
             </div>
         </div>
     )

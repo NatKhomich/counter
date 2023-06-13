@@ -77,32 +77,36 @@ function App() {
         }
     }
 
+
     return (
-        <div className="App">
 
-            <Settings startValue={startValue}
-                      maxValue={maxValue}
+            <div className="App">
 
-                      settingsStartValue={settingsStartValue}
-                      settingsMaxValue={settingsMaxValue}
+                <Settings startValue={startValue}
+                          maxValue={maxValue}
 
-                      setButton={setButton}
-                      error={error}
-                      isInitDataFalse={isInitDataFalse}
+                          settingsStartValue={settingsStartValue}
+                          settingsMaxValue={settingsMaxValue}
 
-            />
+                          setButton={setButton}
+                          error={error}
+                          isInitDataFalse={isInitDataFalse}
 
-            <Counter increaseStartValue={increaseStartValue} //увеличить
-                     resetValue={resetValue} //перезагрузить
+                />
 
-                     startValue={counter}
-                     maxValue={maxValue}
+                <Counter increaseStartValue={increaseStartValue} //увеличить
+                         resetValue={resetValue} //перезагрузить
 
-                     error={error}
-                     displayCounter={displayCounter}
-            />
+                         startValue={counter}
+                         maxValue={maxValue}
 
-        </div>
+                         error={error}
+                         displayCounter={displayCounter}
+                />
+
+            </div>
+
+
     );
 }
 

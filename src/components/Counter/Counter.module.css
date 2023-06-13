@@ -5,12 +5,12 @@
     border-radius: 10px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #264653;
+    background-color: #669bbc;
 }
 
 
 .displayBlock {
-    background-color: #219ebc;
+    background-color: #caf0f8;
     margin: 0 auto;
     border-radius: 10px;
     height: 110px;
@@ -26,21 +26,21 @@
 .text {
     font-size: 20px;
     font-weight: 600;
-    color: black;
+    color: #0d1b2a;
     padding-top: 40px;
 }
 
 .numberRed {
     font-size: 60px;
     font-weight: 600;
-    color: red;
+    color: #e71d36;
     padding-top: 10px;
 }
 
 .errorMessage {
     font-weight: 600;
     font-size: 30px;
-    color: red;
+    color: #e71d36;
     padding-top: 30px;
 }
 

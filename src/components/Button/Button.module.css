@@ -1,6 +1,6 @@
 
 .buttonStyled {
-    background-color: #219ebc;
+    background-color: #054a91;
     border-radius: 10px;
     font-size: 35px;
     font-weight: 600;
@@ -10,7 +10,7 @@
 }
 
 .buttonStyled:active {
-    background-color: cornflowerblue;
+    background-color: #3e7cb1;
     border-radius: 10px;
     font-size: 35px;
     font-weight: 600;

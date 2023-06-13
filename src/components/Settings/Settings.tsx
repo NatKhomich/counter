@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './Settings.module.css'
-import Button from '../Button/Button';
 import {ErrorType} from '../../App';
+import Button from '../Button/Button';
 
 type SettingsType = {
     startValue: number
@@ -36,6 +36,7 @@ const Settings = (props: SettingsType) => {
                        value={props.maxValue}
                        onChange={maxValueHandler}
                 />
+
             </div>
             <div className={s.startValue}>
                 <div className={s.settingsTitle}> Start value:</div>
@@ -45,12 +46,12 @@ const Settings = (props: SettingsType) => {
                        onChange={minValueHandler}
                 />
             </div>
-
-            <Button name={'set'}
+              <Button name={'set'}
                     callBack={() => props.setButton()}
                     disabled={props.error==='error'}
 
             />
+
         </div>
     );
 };
