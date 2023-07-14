@@ -15,17 +15,17 @@ function App() {
     const [error, setError] = useState<ErrorType>('enter')
     const [displayCounter, setDisplayCounter] = useState<DisplayCounterType>('none')
 
-    useEffect( ()=> {
+    useEffect(() => {
         let max = localStorage.getItem('maxValue')
         let start = localStorage.getItem('startValue')
         if (max) {
-           let newMax =  JSON.parse(max)
-          setMaxValue(newMax)
+            let newMax = JSON.parse(max)
+            setMaxValue(newMax)
         }
         if (start) {
-            setStartValue( JSON.parse(start))
+            setStartValue(JSON.parse(start))
         }
-    },[] )
+    }, [])
     useEffect(() => {
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
         localStorage.setItem('startValue', JSON.stringify(startValue))
@@ -34,7 +34,7 @@ function App() {
     const isInitDataFalse =
         maxValue < 1 || startValue < 0 || startValue >= maxValue //иниц данные не верны
 
-    const increaseStartValue = () => {
+    const increaseValue = () => {
         setCounter(num => Number(num) + 1)
         setError('none')
     }
@@ -44,7 +44,7 @@ function App() {
     }
 
     const settingsMaxValue = (maxValue: number) => {
-        if(maxValue < 1 || maxValue <= startValue) {
+        if (maxValue < 1 || maxValue <= startValue) {
             setError('error')
             setDisplayCounter('error')
         } else {
@@ -54,7 +54,7 @@ function App() {
         setMaxValue(Math.round(maxValue))
     }
     const settingsStartValue = (startValue: number) => {
-        if( startValue < 0 || startValue >= maxValue) {
+        if (startValue < 0 || startValue >= maxValue) {
             setError('error')
             setDisplayCounter('error')
 
@@ -67,7 +67,7 @@ function App() {
 
     const setButton = () => {
         if (isInitDataFalse) {
-           setError('error')
+            setError('error')
             setDisplayCounter('error')
 
         } else {
@@ -80,31 +80,30 @@ function App() {
 
     return (
 
-            <div className="App">
+        <div className="App">
 
-                <Settings startValue={startValue}
-                          maxValue={maxValue}
+            <Settings startValue={startValue}
+                      maxValue={maxValue}
 
-                          settingsStartValue={settingsStartValue}
-                          settingsMaxValue={settingsMaxValue}
+                      settingsStartValue={settingsStartValue}
+                      settingsMaxValue={settingsMaxValue}
 
-                          setButton={setButton}
-                          error={error}
-                          isInitDataFalse={isInitDataFalse}
+                      setButton={setButton}
+                      error={error}
+                      isInitDataFalse={isInitDataFalse}
+            />
 
-                />
+            <Counter increaseValue={increaseValue} //увеличить
+                     resetValue={resetValue} //перезагрузить
 
-                <Counter increaseStartValue={increaseStartValue} //увеличить
-                         resetValue={resetValue} //перезагрузить
+                     startValue={counter}
+                     maxValue={maxValue}
 
-                         startValue={counter}
-                         maxValue={maxValue}
+                     error={error}
+                     displayCounter={displayCounter}
+            />
 
-                         error={error}
-                         displayCounter={displayCounter}
-                />
-
-            </div>
+        </div>
 
 
     );

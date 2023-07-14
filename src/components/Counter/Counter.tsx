@@ -5,9 +5,8 @@ import {DisplayCounterType, ErrorType} from '../../App';
 import Button from '../Button/Button';
 
 
-
 type CounterType = {
-    increaseStartValue: () => void
+    increaseValue: () => void
     resetValue: () => void
 
     startValue: number
@@ -20,7 +19,7 @@ type CounterType = {
 export const Counter = (props: CounterType) => {
 
     const ButtonIncreaseHandler = () => {
-        props.increaseStartValue()
+        props.increaseValue()
     }
     const ButtonResetHandler = () => {
         props.resetValue()
@@ -52,7 +51,9 @@ export const Counter = (props: CounterType) => {
                     props.maxValue <= props.startValue}
                         name={'+'}
                         callBack={ButtonIncreaseHandler}/>
-                <Button disabled={props.startValue === 0 || props.error ==='error'} name={'reset'} callBack={ButtonResetHandler}/>
+
+                <Button disabled={props.startValue === 0 || props.error === 'error'} name={'reset'}
+                        callBack={ButtonResetHandler}/>
 
 
             </div>

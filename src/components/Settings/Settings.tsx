@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Settings.module.css'
 import {ErrorType} from '../../App';
 import Button from '../Button/Button';
+import {Input} from '../Input/Input';
 
 type SettingsType = {
     startValue: number
@@ -18,12 +19,11 @@ type SettingsType = {
 
 const Settings = (props: SettingsType) => {
 
-    const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили макс значение
-        props.settingsMaxValue(+e.currentTarget.value)
-
+    const maxValueHandler = (event: number) => {//получили макс значение
+        props.settingsMaxValue(event)
     }
-    const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {//получили мин значение
-        props.settingsStartValue(+e.currentTarget.value)
+    const minValueHandler = (event: number) => {//получили мин значение
+        props.settingsStartValue(event)
     }
 
     return (
@@ -31,19 +31,30 @@ const Settings = (props: SettingsType) => {
         <div className={s.settings}>
             <div className={s.maxValue}>
                 <div className={s.settingsTitle}> Max value:</div>
-                <input className={props.error === 'error' ? s.error : s.input}
+               {/* <input className={props.error === 'error' ? s.error : s.input}
                        type="number"
                        value={props.maxValue}
                        onChange={maxValueHandler}
+                />*/}
+
+                <Input value={props.maxValue}
+                       onChange={maxValueHandler }
+                       error={props.error}
+
                 />
 
             </div>
             <div className={s.startValue}>
                 <div className={s.settingsTitle}> Start value:</div>
-                <input className={props.error === 'error' ? s.error : s.input}
+                {/*<input className={props.error === 'error' ? s.error : s.input}
                        type="number"
                        value={props.startValue}
+                      // onChange={minValueHandler}
+                />*/}
+
+                <Input value={props.startValue}
                        onChange={minValueHandler}
+                       error={props.error}
                 />
             </div>
               <Button name={'set'}
