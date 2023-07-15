@@ -16,12 +16,12 @@ type CounterType = {
     displayCounter: DisplayCounterType
 }
 
-export const Counter = (props: CounterType) => {
+export const Counter: React.FC<CounterType> = (props) => {
 
-    const ButtonIncreaseHandler = () => {
+    const buttonIncreaseHandler = () => {
         props.increaseValue()
     }
-    const ButtonResetHandler = () => {
+    const buttonResetHandler = () => {
         props.resetValue()
     }
 
@@ -38,8 +38,9 @@ export const Counter = (props: CounterType) => {
                     <div className={s.errorMessage}> incorrect value! </div>
                     : props.displayCounter === 'startTitle' || props.displayCounter === 'none' ?
                         <div className={s.text}> enter value and press "set" </div>
-                        : <div
-                            className={props.startValue === props.maxValue ? s.numberRed : s.number}> {props.startValue} </div>}
+                        : <div className={props.startValue === props.maxValue ? s.numberRed : s.number}>
+                            {props.startValue}
+                        </div>}
 
             </div>
 
@@ -50,10 +51,10 @@ export const Counter = (props: CounterType) => {
                     !props.displayCounter ||
                     props.maxValue <= props.startValue}
                         name={'+'}
-                        callBack={ButtonIncreaseHandler}/>
+                        callBack={buttonIncreaseHandler}/>
 
                 <Button disabled={props.startValue === 0 || props.error === 'error'} name={'reset'}
-                        callBack={ButtonResetHandler}/>
+                        callBack={buttonResetHandler}/>
 
 
             </div>

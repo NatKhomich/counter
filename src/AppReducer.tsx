@@ -10,8 +10,8 @@ export type StateType = {
     startValue: number
     maxValue: number
     counter: number
-    /*error: ErrorType
-    displayCounter: DisplayCounterType*/
+    error: ErrorType
+    displayCounter: DisplayCounterType
 }
 
 function AppReducer() {
@@ -20,8 +20,8 @@ function AppReducer() {
         startValue: 0,
         maxValue: 5,
         counter: 0,
-       /* error: 'enter',
-        displayCounter: 'none'*/
+        error: 'enter',
+        displayCounter: 'none'
     }
 
     const [startValue, setStartValue] = useState(0)
@@ -31,28 +31,12 @@ function AppReducer() {
     const [error, setError] = useState<ErrorType>('enter')
     const [displayCounter, setDisplayCounter] = useState<DisplayCounterType>('none')
 
-    /*useEffect(() => {
-        let max = localStorage.getItem('maxValue')
-        let start = localStorage.getItem('startValue')
-        if (max) {
-            let newMax = JSON.parse(max)
-            setMaxValue(newMax)
-        }
-        if (start) {
-            setStartValue(JSON.parse(start))
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem('maxValue', JSON.stringify(maxValue))
-        localStorage.setItem('startValue', JSON.stringify(startValue))
-    }, [maxValue, startValue])*/
-
     const isInitDataFalse =
         maxValue < 1 || startValue < 0 || startValue >= maxValue //иниц данные не верны
 
     const increaseValue = () => {
         setCounter(num => Number(num) + 1)
-        setError('none')
+       // setError('none')
     }
 
     const resetValue = () => {
@@ -63,23 +47,27 @@ function AppReducer() {
         if (maxValue < 1 || maxValue <= startValue) {
             setError('error')
             setDisplayCounter('error')
+            setMaxValue(Math.round(maxValue))
         } else {
             setError('none')
             setDisplayCounter('startTitle')
+            setMaxValue(Math.round(maxValue))
         }
-        setMaxValue(Math.round(maxValue))
+        //setMaxValue(Math.round(maxValue))
     }
 
     const settingsStartValue = (startValue: number) => {
         if (startValue < 0 || startValue >= maxValue) {
             setError('error')
             setDisplayCounter('error')
+            setStartValue(Math.round(startValue))
 
         } else {
             setError('none')
             setDisplayCounter('startTitle')
+            setStartValue(Math.round(startValue))
         }
-        setStartValue(Math.round(startValue))
+       // setStartValue(Math.round(startValue))
     }
 
     const setButton = () => {
