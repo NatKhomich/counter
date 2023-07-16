@@ -4,26 +4,27 @@ import {StateType} from '../AppReducer';
 export const counterReducer = (state: StateType, action: ActionsType): StateType => {
     switch (action.type) {
         case 'INCREASE-VALUE' : {
-            return {...state, counter: state.startValue + 1}
+            return {...state, counter: state.counter + 1}
         }
 
         case 'RESET-VALUE' : {
-            return {...state, counter: action.payload.startValue}
+            return {...state, counter: state.startValue}
         }
 
         case 'SETTINGS-MAX-VALUE' : {
             if (state.maxValue < 1 || state.maxValue <= state.startValue) {
                 return {
-                    ...state, error: state.error = 'error',
-                    displayCounter: state.displayCounter = 'error',
-                    maxValue: action.payload.maxValue
+                    ...state,
+                    maxValue: action.payload.maxValue,
+                    error: state.error = 'error',
+                    displayCounter: state.displayCounter = 'error'
                 }
             } else {
                 return {
                     ...state,
+                    maxValue: action.payload.maxValue,
                     error: state.error = 'none',
                     displayCounter: state.displayCounter = 'startTitle',
-                    maxValue: action.payload.maxValue
                 }
             }
         }
@@ -31,16 +32,35 @@ export const counterReducer = (state: StateType, action: ActionsType): StateType
         case 'SETTINGS-START-VALUE' : {
             if (state.startValue < 0 || state.startValue >= state.maxValue) {
                 return {
-                    ...state, error: state.error = 'error',
+                    ...state,
+                    startValue: Math.round(action.payload.startValue),
+                    counter: state.startValue,
+                    error: state.error = 'error',
+                    displayCounter: state.displayCounter = 'error'
+                }
+            } else {
+                return {
+                    ...state,
+                    startValue: Math.round(action.payload.startValue),
+                    error: state.error = 'none',
+                    displayCounter: state.displayCounter = 'startTitle'
+                }
+            }
+        }
+
+        case 'SET-BUTTON' : {
+            if (state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue ) {
+                return {
+                    ...state,
+                    error: state.error = 'error',
                     displayCounter: state.displayCounter = 'error',
-                    startValue: action.payload.startValue
                 }
             } else {
                 return {
                     ...state,
                     error: state.error = 'none',
-                    displayCounter: state.displayCounter = 'startTitle',
-                    startValue: action.payload.startValue
+                    displayCounter: state.displayCounter = 'number',
+                    counter: state.startValue
                 }
             }
         }
@@ -51,7 +71,7 @@ export const counterReducer = (state: StateType, action: ActionsType): StateType
 }
 
 type ActionsType = IncreaseValueACType | ResetValueACType
-    | SettingsMaxValueACType | SettingsStartValueACType
+    | SettingsMaxValueACType | SettingsStartValueACType | SetButtonACType
 
 type IncreaseValueACType = ReturnType<typeof increaseValueAC>
 export const increaseValueAC = () => {
@@ -61,12 +81,9 @@ export const increaseValueAC = () => {
 }
 
 type ResetValueACType = ReturnType<typeof resetValueAC>
-export const resetValueAC = (startValue: number) => {
+export const resetValueAC = () => {
     return {
         type: 'RESET-VALUE',
-        payload: {
-            startValue
-        }
     } as const
 }
 
@@ -89,3 +106,12 @@ export const settingsStartValueAC = (startValue: number) => {
         }
     } as const
 }
+
+type SetButtonACType = ReturnType<typeof setButtonAC>
+export const setButtonAC = () => {
+    return {
+        type: 'SET-BUTTON',
+    } as const
+}
+
+

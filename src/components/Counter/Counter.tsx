@@ -61,3 +61,61 @@ export const Counter: React.FC<CounterType> = (props) => {
         </div>
     )
 }
+
+
+/*
+import React from 'react';
+import { DisplayCounterType, ErrorType } from '../../App';
+
+type Props = {
+    increaseValue: () => void;
+    resetValue: () => void;
+    startValue: number;
+    maxValue: number;
+    error: ErrorType;
+    displayCounter: DisplayCounterType;
+};
+
+const Counter: React.FC<Props> = ({
+                                      increaseValue,
+                                      resetValue,
+                                      startValue,
+                                      maxValue,
+                                      error,
+                                      displayCounter,
+                                  }) => {
+    const isMaxValueReached = startValue === maxValue;
+    const isDisabled = error !== 'none' || isMaxValueReached;
+
+    let counterDisplay = null;
+
+    switch (displayCounter) {
+        case 'error':
+            counterDisplay = <div className="error">Incorrect value!</div>;
+            break;
+        case 'startTitle':
+            counterDisplay = <div className="start-title">Enter values and press "set"</div>;
+            break;
+        case 'number':
+            counterDisplay = <div className="counter">{startValue}</div>;
+            break;
+        default:
+            counterDisplay = null;
+    }
+
+    return (
+        <div className="counter-wrapper">
+            <div className="buttons">
+                <button className="button" onClick={increaseValue} disabled={isDisabled}>
+                    increment
+                </button>
+                <button className="button" onClick={resetValue} disabled={isDisabled}>
+                    reset
+                </button>
+            </div>
+            {counterDisplay}
+        </div>
+    );
+};
+
+export default Counter;*/
