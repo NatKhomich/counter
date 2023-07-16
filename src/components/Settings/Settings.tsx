@@ -13,7 +13,7 @@ type SettingsType = {
     setButton: () => void
     error: ErrorType
 
-    isInitDataFalse: boolean
+    //isInitDataFalse: boolean
 }
 
 const Settings = (props: SettingsType) => {

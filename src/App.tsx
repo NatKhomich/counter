@@ -90,7 +90,7 @@ function App() {
 
                       setButton={setButton}
                       error={error}
-                      isInitDataFalse={isInitDataFalse}
+                      //isInitDataFalse={isInitDataFalse}
             />
 
             <Counter increaseValue={increaseValue} //увеличить

@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from 'react';
+import React, {useReducer} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import Settings from './components/Settings/Settings';
@@ -38,8 +38,7 @@ function AppReducer() {
     const [error, setError] = useState<ErrorType>('enter')
     const [displayCounter, setDisplayCounter] = useState<DisplayCounterType>('none')*/
 
-    const isInitDataFalse =
-        state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue //иниц данные не верны
+/*    const isInitDataFalse = state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue //иниц данные не верны*/
 
 
     const increaseValue = () => {
@@ -107,7 +106,7 @@ function AppReducer() {
 
                       setButton={setButton}
                       error={state.error}
-                      isInitDataFalse={isInitDataFalse}
+                      //isInitDataFalse={isInitDataFalse}
             />
 
             <Counter increaseValue={increaseValue} //увеличить

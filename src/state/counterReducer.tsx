@@ -12,7 +12,7 @@ export const counterReducer = (state: StateType, action: ActionsType): StateType
         }
 
         case 'SETTINGS-MAX-VALUE' : {
-            if (state.maxValue < 1 || state.maxValue <= state.startValue) {
+            if (action.payload.maxValue < 1 || action.payload.maxValue <= state.startValue) {
                 return {
                     ...state,
                     maxValue: action.payload.maxValue,
@@ -30,7 +30,8 @@ export const counterReducer = (state: StateType, action: ActionsType): StateType
         }
 
         case 'SETTINGS-START-VALUE' : {
-            if (state.startValue < 0 || state.startValue >= state.maxValue) {
+            if (action.payload.startValue < 0 || action.payload.startValue >= state.maxValue) {
+                console.log('fvfdv')
                 return {
                     ...state,
                     startValue: Math.round(action.payload.startValue),
