@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
-import Settings from './components/Settings/Settings';
+import {Settings} from './components/Settings/Settings';
 import {
     counterReducer,
     increaseValueAC,
@@ -31,68 +31,25 @@ function AppReducer() {
         displayCounter: 'none'
     })
 
-    /*const [startValue, setStartValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(5)
-    const [counter, setCounter] = useState(0)
-
-    const [error, setError] = useState<ErrorType>('enter')
-    const [displayCounter, setDisplayCounter] = useState<DisplayCounterType>('none')*/
-
-/*    const isInitDataFalse = state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue //иниц данные не верны*/
-
-
     const increaseValue = () => {
-        //setCounter(num => Number(num) + 1)
-       // setError('none')
         dispatch(increaseValueAC())
     }
 
     const resetValue = () => {
-        //setCounter(startValue)
         dispatch(resetValueAC())
     }
 
     const settingsMaxValue = (maxValue: number) => {
-       /* if (maxValue < 1 || maxValue <= startValue) {
-            setError('error')
-            setDisplayCounter('error')
-            setMaxValue(Math.round(maxValue))
-        } else {
-            setError('none')
-            setDisplayCounter('startTitle')
-            setMaxValue(Math.round(maxValue))
-        }*/
         dispatch(settingsMaxValueAC(maxValue))
-        //setMaxValue(Math.round(maxValue))
     }
 
     const settingsStartValue = (startValue: number) => {
-        /*if (startValue < 0 || startValue >= maxValue) {
-            setError('error')
-            setDisplayCounter('error')
-            setStartValue(Math.round(startValue))
-
-        } else {
-            setError('none')
-            setDisplayCounter('startTitle')
-            setStartValue(Math.round(startValue))
-        }*/
-       // setStartValue(Math.round(startValue))
         dispatch(settingsStartValueAC(startValue))
     }
 
     const setButton = () => {
-        /*if (isInitDataFalse) {
-            setError('error')
-            setDisplayCounter('error')
-        } else {
-            setCounter(Math.round(startValue))
-            setError('none')
-            setDisplayCounter('number')
-        }*/
         dispatch(setButtonAC())
     }
-
 
     return (
 
@@ -105,9 +62,7 @@ function AppReducer() {
                       settingsMaxValue={settingsMaxValue}
 
                       setButton={setButton}
-                      error={state.error}
-                      //isInitDataFalse={isInitDataFalse}
-            />
+                      error={state.error}/>
 
             <Counter increaseValue={increaseValue} //увеличить
                      resetValue={resetValue} //перезагрузить

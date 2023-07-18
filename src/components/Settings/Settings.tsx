@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import s from './Settings.module.css'
 import {ErrorType} from '../../App';
 import Button from '../Button/Button';
@@ -12,17 +12,22 @@ type SettingsType = {
 
     setButton: () => void
     error: ErrorType
-
-    //isInitDataFalse: boolean
 }
 
-const Settings = (props: SettingsType) => {
+export const Settings: FC<SettingsType> = ({
+                                               startValue,
+                                               maxValue,
+                                               settingsStartValue,
+                                               settingsMaxValue,
+                                               setButton,
+                                               error
+                                           }) => {
 
     const maxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {//получили макс значение
-        props.settingsMaxValue(+event.currentTarget.value)
+        settingsMaxValue(+event.currentTarget.value)
     }
     const minValueHandler = (event: ChangeEvent<HTMLInputElement>) => {//получили мин значение
-        props.settingsStartValue(+event.currentTarget.value)
+        settingsStartValue(+event.currentTarget.value)
     }
 
     return (
@@ -30,28 +35,22 @@ const Settings = (props: SettingsType) => {
         <div className={s.settings}>
             <div className={s.maxValue}>
                 <div className={s.settingsTitle}> Max value:</div>
-                <input className={props.error === 'error' ? s.error : s.input}
+                <input className={error === 'error' ? s.error : s.input}
                        type="number"
-                       value={props.maxValue}
-                       onChange={maxValueHandler}
-                />
+                       value={maxValue}
+                       onChange={maxValueHandler}/>
             </div>
             <div className={s.startValue}>
                 <div className={s.settingsTitle}> Start value:</div>
-                <input className={props.error === 'error' ? s.error : s.input}
+                <input className={error === 'error' ? s.error : s.input}
                        type="number"
-                       value={props.startValue}
-                      onChange={minValueHandler}
-                />
+                       value={startValue}
+                       onChange={minValueHandler}/>
             </div>
-              <Button name={'set'}
-                    callBack={() => props.setButton()}
-                    disabled={props.error==='error'}
-
-            />
-
+            <Button name={'set'}
+                    callBack={() => setButton()}
+                    disabled={error === 'error'}/>
         </div>
     );
 };
 
-export default Settings;

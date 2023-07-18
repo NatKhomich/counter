@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
-import Settings from './components/Settings/Settings';
+import {Settings} from './components/Settings/Settings';
 
 export type ErrorType = 'error' | 'none' | 'enter'
 export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
@@ -89,9 +89,7 @@ function App() {
                       settingsMaxValue={settingsMaxValue}
 
                       setButton={setButton}
-                      error={error}
-                      //isInitDataFalse={isInitDataFalse}
-            />
+                      error={error}/>
 
             <Counter increaseValue={increaseValue} //увеличить
                      resetValue={resetValue} //перезагрузить
@@ -100,11 +98,9 @@ function App() {
                      maxValue={maxValue}
 
                      error={error}
-                     displayCounter={displayCounter}
-            />
+                     displayCounter={displayCounter}/>
 
         </div>
-
 
     );
 }
