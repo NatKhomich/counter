@@ -23,10 +23,10 @@ export const Settings: FC<SettingsType> = ({
                                                error
                                            }) => {
 
-    const maxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {//получили макс значение
+    const maxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         settingsMaxValue(+event.currentTarget.value)
     }
-    const minValueHandler = (event: ChangeEvent<HTMLInputElement>) => {//получили мин значение
+    const minValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         settingsStartValue(+event.currentTarget.value)
     }
 

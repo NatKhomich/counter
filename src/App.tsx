@@ -32,7 +32,7 @@ function App() {
     }, [maxValue, startValue])
 
     const isInitDataFalse =
-        maxValue < 1 || startValue < 0 || startValue >= maxValue //иниц данные не верны
+        maxValue < 1 || startValue < 0 || startValue >= maxValue
 
     const increaseValue = () => {
         setCounter(num => Number(num) + 1)
@@ -91,8 +91,8 @@ function App() {
                       setButton={setButton}
                       error={error}/>
 
-            <Counter increaseValue={increaseValue} //увеличить
-                     resetValue={resetValue} //перезагрузить
+            <Counter increaseValue={increaseValue}
+                     resetValue={resetValue}
 
                      startValue={counter}
                      maxValue={maxValue}

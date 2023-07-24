@@ -34,7 +34,6 @@ function AppReducer() {
     const increaseValue = () => {
         dispatch(increaseValueAC())
     }
-
     const resetValue = () => {
         dispatch(resetValueAC())
     }
@@ -42,7 +41,6 @@ function AppReducer() {
     const settingsMaxValue = (maxValue: number) => {
         dispatch(settingsMaxValueAC(maxValue))
     }
-
     const settingsStartValue = (startValue: number) => {
         dispatch(settingsStartValueAC(startValue))
     }
@@ -64,8 +62,8 @@ function AppReducer() {
                       setButton={setButton}
                       error={state.error}/>
 
-            <Counter increaseValue={increaseValue} //увеличить
-                     resetValue={resetValue} //перезагрузить
+            <Counter increaseValue={increaseValue}
+                     resetValue={resetValue}
 
                      startValue={state.counter}
                      maxValue={state.maxValue}
