@@ -1,7 +1,14 @@
 import {StateType} from '../AppReducer';
 
+let initialState: StateType = {
+    startValue: 0,
+    maxValue: 5,
+    counter: 0,
+    error: 'enter',
+    displayCounter: 'none'
+}
 
-export const counterReducer = (state: StateType, action: ActionsType): StateType => {
+export const counterReducer = (state = initialState, action: ActionsType): StateType => {
     switch (action.type) {
         case 'INCREASE-VALUE' : {
             return {...state, counter: state.counter + 1}

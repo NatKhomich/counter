@@ -1,14 +1,15 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import {Settings} from './components/Settings/Settings';
 import {
-    counterReducer,
     increaseValueAC,
     resetValueAC, setButtonAC,
     settingsMaxValueAC,
     settingsStartValueAC
 } from './state/counterReducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from './state/store';
 
 export type ErrorType = 'error' | 'none' | 'enter'
 export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
@@ -21,15 +22,10 @@ export type StateType = {
     displayCounter: DisplayCounterType
 }
 
-export function AppReducer() {
+function AppReducer() {
 
- const [state, dispatch] = useReducer(counterReducer, {
-        startValue: 0,
-        maxValue: 5,
-        counter: 0,
-        error: 'enter',
-        displayCounter: 'none'
-    })
+    const state = useSelector<AppRootStateType, StateType>(state => state.counter)
+    const dispatch = useDispatch()
 
     const increaseValue = () => {
         dispatch(increaseValueAC())
@@ -78,4 +74,5 @@ export function AppReducer() {
     );
 }
 
+export default AppReducer;
 
