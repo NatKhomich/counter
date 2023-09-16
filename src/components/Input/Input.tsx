@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from '../Settings/Settings.module.css';
-import {ErrorType} from '../../App';
+import {ErrorType} from '../../util/AppUtil';
 
 type InputType = {
     value: number

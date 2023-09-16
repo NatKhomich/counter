@@ -1,8 +1,7 @@
 import {combineReducers, legacy_createStore} from 'redux';
 import {counterReducer} from './counterReducer';
 
-const rootReducer = combineReducers(
-    {
+const rootReducer = combineReducers({
         counter: counterReducer
     }
 )

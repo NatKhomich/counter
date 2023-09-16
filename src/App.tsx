@@ -1,108 +1,67 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import {Settings} from './components/Settings/Settings';
+import {
+    increaseValueAC,
+    resetValueAC, setButtonAC,
+    settingsMaxValueAC,
+    settingsStartValueAC
+} from './state/counterReducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from './state/store';
 
 export type ErrorType = 'error' | 'none' | 'enter'
 export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
 
+export type StateType = {
+    startValue: number
+    maxValue: number
+    counter: number
+    error: ErrorType
+    displayCounter: DisplayCounterType
+}
+
 function App() {
 
-    const [startValue, setStartValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(5)
-    const [counter, setCounter] = useState(0)
-
-    const [error, setError] = useState<ErrorType>('enter')
-    const [displayCounter, setDisplayCounter] = useState<DisplayCounterType>('none')
-
-    useEffect(() => {
-        let max = localStorage.getItem('maxValue')
-        let start = localStorage.getItem('startValue')
-        if (max) {
-            let newMax = JSON.parse(max)
-            setMaxValue(newMax)
-        }
-        if (start) {
-            setStartValue(JSON.parse(start))
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem('maxValue', JSON.stringify(maxValue))
-        localStorage.setItem('startValue', JSON.stringify(startValue))
-    }, [maxValue, startValue])
-
-    const isInitDataFalse =
-        maxValue < 1 || startValue < 0 || startValue >= maxValue
+    const state = useSelector<AppRootStateType, StateType>(state => state.counter)
+    const dispatch = useDispatch()
 
     const increaseValue = () => {
-        setCounter(num => Number(num) + 1)
-        setError('none')
+        dispatch(increaseValueAC())
     }
-
     const resetValue = () => {
-        setCounter(startValue)
+        dispatch(resetValueAC())
     }
-
     const settingsMaxValue = (maxValue: number) => {
-        if (maxValue < 1 || maxValue <= startValue) {
-            setError('error')
-            setDisplayCounter('error')
-        } else {
-            setError('none')
-            setDisplayCounter('startTitle')
-        }
-        setMaxValue(Math.round(maxValue))
+        dispatch(settingsMaxValueAC(maxValue))
     }
     const settingsStartValue = (startValue: number) => {
-        if (startValue < 0 || startValue >= maxValue) {
-            setError('error')
-            setDisplayCounter('error')
-
-        } else {
-            setError('none')
-            setDisplayCounter('startTitle')
-        }
-        setStartValue(Math.round(startValue))
+        dispatch(settingsStartValueAC(startValue))
     }
-
     const setButton = () => {
-        if (isInitDataFalse) {
-            setError('error')
-            setDisplayCounter('error')
-
-        } else {
-            setCounter(Math.round(startValue))
-            setError('none')
-            setDisplayCounter('number')
-        }
+        dispatch(setButtonAC())
     }
-
 
     return (
-
         <div className="App">
-
-            <Settings startValue={startValue}
-                      maxValue={maxValue}
-
+            <Settings startValue={state.startValue}
+                      maxValue={state.maxValue}
                       settingsStartValue={settingsStartValue}
                       settingsMaxValue={settingsMaxValue}
-
                       setButton={setButton}
-                      error={error}/>
+                      error={state.error}/>
 
             <Counter increaseValue={increaseValue}
                      resetValue={resetValue}
-
-                     startValue={counter}
-                     maxValue={maxValue}
-
-                     error={error}
-                     displayCounter={displayCounter}/>
-
+                     startValue={state.counter}
+                     maxValue={state.maxValue}
+                     error={state.error}
+                     displayCounter={state.displayCounter}
+            />
         </div>
-
     );
 }
 
 export default App;
+

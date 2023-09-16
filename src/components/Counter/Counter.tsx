@@ -1,17 +1,14 @@
 import React, {FC} from 'react';
 import s from './Counter.module.css'
 import sBtn from '../Button/Button.module.css'
-import {DisplayCounterType, ErrorType} from '../../App';
+import {DisplayCounterType, ErrorType} from '../../util/AppUtil';
 import Button from '../Button/Button';
-
 
 type CounterType = {
     increaseValue: () => void
     resetValue: () => void
-
     startValue: number
     maxValue: number
-
     error: ErrorType
     displayCounter: DisplayCounterType
 }
@@ -34,8 +31,6 @@ export const Counter: FC<CounterType> = ({
 
     return (
         <div className={s.counter}>
-
-            {/*дисплей*/}
             <div className={s.displayBlock}>
 
                 {displayCounter === 'startTitle' && error === 'enter' &&
@@ -48,7 +43,6 @@ export const Counter: FC<CounterType> = ({
                         : <div className={startValue === maxValue ? s.numberRed : s.number}>
                             {startValue}
                         </div>}
-
             </div>
             <div className={sBtn.button}>
                 <Button disabled={error === 'error' ||
@@ -57,7 +51,6 @@ export const Counter: FC<CounterType> = ({
                     maxValue <= startValue}
                         name={'+'}
                         callBack={buttonIncreaseHandler}/>
-
                 <Button disabled={startValue === 0 || error === 'error'} name={'reset'}
                         callBack={buttonResetHandler}/>
             </div>

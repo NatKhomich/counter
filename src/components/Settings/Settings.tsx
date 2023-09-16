@@ -1,15 +1,13 @@
 import React, {ChangeEvent, FC} from 'react';
 import s from './Settings.module.css'
-import {ErrorType} from '../../App';
+import {ErrorType} from '../../util/AppUtil';
 import Button from '../Button/Button';
 
 type SettingsType = {
     startValue: number
     maxValue: number
-
     settingsStartValue: (startValue: number) => void
     settingsMaxValue: (maxValue: number) => void
-
     setButton: () => void
     error: ErrorType
 }
@@ -31,7 +29,6 @@ export const Settings: FC<SettingsType> = ({
     }
 
     return (
-
         <div className={s.settings}>
             <div className={s.maxValue}>
                 <div className={s.settingsTitle}> Max value:</div>

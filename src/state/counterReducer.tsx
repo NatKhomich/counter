@@ -1,4 +1,4 @@
-import {StateType} from '../AppReducer';
+import {StateType} from '../App';
 
 let initialState: StateType = {
     startValue: 0,
@@ -13,35 +13,30 @@ export const counterReducer = (state = initialState, action: ActionsType): State
         case 'INCREASE-VALUE' : {
             return {...state, counter: state.counter + 1}
         }
-
         case 'RESET-VALUE' : {
             return {...state, counter: state.startValue}
         }
-
         case 'SETTINGS-MAX-VALUE' : {
-            if (action.payload.maxValue < 1 || action.payload.maxValue <= state.startValue) {
+            if (action.maxValue < 1 || action.maxValue <= state.startValue) {
                 return {
-                    ...state,
-                    maxValue: action.payload.maxValue,
+                    ...state, maxValue: action.maxValue,
                     error: state.error = 'error',
                     displayCounter: state.displayCounter = 'error'
                 }
             } else {
                 return {
                     ...state,
-                    maxValue: action.payload.maxValue,
+                    maxValue: action.maxValue,
                     error: state.error = 'none',
                     displayCounter: state.displayCounter = 'startTitle',
                 }
             }
         }
-
         case 'SETTINGS-START-VALUE' : {
-            if (action.payload.startValue < 0 || action.payload.startValue >= state.maxValue) {
-                console.log('fvfdv')
+            if (action.startValue < 0 || action.startValue >= state.maxValue) {
                 return {
                     ...state,
-                    startValue: Math.round(action.payload.startValue),
+                    startValue: Math.round(action.startValue),
                     counter: state.startValue,
                     error: state.error = 'error',
                     displayCounter: state.displayCounter = 'error'
@@ -49,13 +44,12 @@ export const counterReducer = (state = initialState, action: ActionsType): State
             } else {
                 return {
                     ...state,
-                    startValue: Math.round(action.payload.startValue),
+                    startValue: Math.round(action.startValue),
                     error: state.error = 'none',
                     displayCounter: state.displayCounter = 'startTitle'
                 }
             }
         }
-
         case 'SET-BUTTON' : {
             if (state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue ) {
                 return {
@@ -65,61 +59,23 @@ export const counterReducer = (state = initialState, action: ActionsType): State
                 }
             } else {
                 return {
-                    ...state,
-                    error: state.error = 'none',
+                    ...state, error: state.error = 'none',
                     displayCounter: state.displayCounter = 'number',
-                    counter: state.startValue
-                }
+                    counter: state.startValue}
             }
         }
-
-        default:
-            return state
+        default: return state
     }
 }
 
-type ActionsType = IncreaseValueACType | ResetValueACType
-    | SettingsMaxValueACType | SettingsStartValueACType | SetButtonACType
+type ActionsType = ReturnType<typeof increaseValueAC> | ReturnType<typeof resetValueAC>
+    | ReturnType<typeof settingsMaxValueAC> | ReturnType<typeof settingsStartValueAC>
+    | ReturnType<typeof setButtonAC>
 
-type IncreaseValueACType = ReturnType<typeof increaseValueAC>
-export const increaseValueAC = () => {
-    return {
-        type: 'INCREASE-VALUE',
-    } as const
-}
-
-type ResetValueACType = ReturnType<typeof resetValueAC>
-export const resetValueAC = () => {
-    return {
-        type: 'RESET-VALUE',
-    } as const
-}
-
-type SettingsMaxValueACType = ReturnType<typeof settingsMaxValueAC>
-export const settingsMaxValueAC = (maxValue: number) => {
-    return {
-        type: 'SETTINGS-MAX-VALUE',
-        payload: {
-            maxValue
-        }
-    } as const
-}
-
-type SettingsStartValueACType = ReturnType<typeof settingsStartValueAC>
-export const settingsStartValueAC = (startValue: number) => {
-    return {
-        type: 'SETTINGS-START-VALUE',
-        payload: {
-            startValue
-        }
-    } as const
-}
-
-type SetButtonACType = ReturnType<typeof setButtonAC>
-export const setButtonAC = () => {
-    return {
-        type: 'SET-BUTTON',
-    } as const
-}
+export const increaseValueAC = () => ({type: 'INCREASE-VALUE'} as const)
+export const resetValueAC = () => ({type: 'RESET-VALUE'} as const)
+export const settingsMaxValueAC = (maxValue: number) => ({type: 'SETTINGS-MAX-VALUE', maxValue} as const)
+export const settingsStartValueAC = (startValue: number) => ({type: 'SETTINGS-START-VALUE', startValue} as const)
+export const setButtonAC = () => ({type: 'SET-BUTTON'} as const)
 
 
