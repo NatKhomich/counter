@@ -1,6 +1,5 @@
 import {DisplayCounterType, ErrorType} from '../components/Counter/Counter';
 import {Dispatch} from 'redux';
-import {AppRootStateType} from './store';
 
 export type StateType = {
     startValue: number
@@ -90,21 +89,6 @@ export const settingsMaxValueAC = (maxValue: number) => ({type: 'SETTINGS-MAX-VA
 export const settingsStartValueAC = (startValue: number) => ({type: 'SETTINGS-START-VALUE', startValue} as const)
 export const setButtonAC = () => ({type: 'SET-BUTTON'} as const)
 //thunk
-export const increaseValueTC = () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
-    const currentStartValue = getState().counter.counter
-    localStorage.setItem('startValue', JSON.stringify(currentStartValue + 1))
+export const increaseValueTC = () => (dispatch: Dispatch) => {
     dispatch(increaseValueAC())
 }
-
-/*export const setStartValueLocalStorageTC = () => (dispatch: Dispatch) => {
-    let max = localStorage.getItem('maxValue')
-    let start = localStorage.getItem('startValue')
-    if (max) {
-        let newMax = JSON.parse(max)
-        setMaxValue(newMax)
-    }
-    if (start) {
-        setStartValue(JSON.parse(start))
-    }
-}*/
-

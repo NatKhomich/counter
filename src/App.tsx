@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import {Settings} from './components/Settings/Settings';
@@ -16,10 +16,6 @@ import {AppRootStateType, useAppDispatch} from './state/store';
 function App() {
     const state = useSelector<AppRootStateType, StateType>(state => state.counter)
     const dispatch = useAppDispatch()
-
-    useEffect(() => {
-       /* setStartValueLocalStorageTC()*/
-    }, [])
 
     const increaseValue = () => {
         dispatch(increaseValueTC())

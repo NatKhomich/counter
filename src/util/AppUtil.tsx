@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import '../App.css';
 import {Counter, DisplayCounterType, ErrorType} from '../components/Counter/Counter';
 import {Settings} from '../components/Settings/Settings';
