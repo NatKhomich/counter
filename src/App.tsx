@@ -1,34 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import {Settings} from './components/Settings/Settings';
 import {
-    increaseValueAC,
-    resetValueAC, setButtonAC,
+    increaseValueTC,
+    resetValueAC,
+    setButtonAC,
     settingsMaxValueAC,
-    settingsStartValueAC
+    settingsStartValueAC,
+    StateType
 } from './state/counterReducer';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from './state/store';
-
-export type ErrorType = 'error' | 'none' | 'enter'
-export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
-
-export type StateType = {
-    startValue: number
-    maxValue: number
-    counter: number
-    error: ErrorType
-    displayCounter: DisplayCounterType
-}
+import {useSelector} from 'react-redux';
+import {AppRootStateType, useAppDispatch} from './state/store';
 
 function App() {
-
     const state = useSelector<AppRootStateType, StateType>(state => state.counter)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+       /* setStartValueLocalStorageTC()*/
+    }, [])
 
     const increaseValue = () => {
-        dispatch(increaseValueAC())
+        dispatch(increaseValueTC())
     }
     const resetValue = () => {
         dispatch(resetValueAC())
@@ -57,8 +51,7 @@ function App() {
                      startValue={state.counter}
                      maxValue={state.maxValue}
                      error={state.error}
-                     displayCounter={state.displayCounter}
-            />
+                     displayCounter={state.displayCounter}/>
         </div>
     );
 }

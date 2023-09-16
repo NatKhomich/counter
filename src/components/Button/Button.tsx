@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './Button.module.css'
 
 type ButtonType = {
     name: string
     callBack: ()=> void
-    disabled?: boolean| undefined 
+    disabled?: boolean| undefined
 }
 
-const Button = (props: ButtonType) => {
+const Button: FC<ButtonType> = ({name, callBack, disabled }) => {
     return (
             <button className={s.buttonStyled}
-                    disabled={props.disabled}
-                    onClick={props.callBack}> {props.name}
+                    disabled={disabled}
+                    onClick={callBack}> {name}
             </button>
     );
 };

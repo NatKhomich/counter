@@ -1,4 +1,14 @@
-import {StateType} from '../App';
+import {DisplayCounterType, ErrorType} from '../components/Counter/Counter';
+import {Dispatch} from 'redux';
+import {AppRootStateType} from './store';
+
+export type StateType = {
+    startValue: number
+    maxValue: number
+    counter: number
+    error: ErrorType
+    displayCounter: DisplayCounterType
+}
 
 let initialState: StateType = {
     startValue: 0,
@@ -51,7 +61,7 @@ export const counterReducer = (state = initialState, action: ActionsType): State
             }
         }
         case 'SET-BUTTON' : {
-            if (state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue ) {
+            if (state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue) {
                 return {
                     ...state,
                     error: state.error = 'error',
@@ -61,10 +71,12 @@ export const counterReducer = (state = initialState, action: ActionsType): State
                 return {
                     ...state, error: state.error = 'none',
                     displayCounter: state.displayCounter = 'number',
-                    counter: state.startValue}
+                    counter: state.startValue
+                }
             }
         }
-        default: return state
+        default:
+            return state
     }
 }
 
@@ -77,5 +89,22 @@ export const resetValueAC = () => ({type: 'RESET-VALUE'} as const)
 export const settingsMaxValueAC = (maxValue: number) => ({type: 'SETTINGS-MAX-VALUE', maxValue} as const)
 export const settingsStartValueAC = (startValue: number) => ({type: 'SETTINGS-START-VALUE', startValue} as const)
 export const setButtonAC = () => ({type: 'SET-BUTTON'} as const)
+//thunk
+export const increaseValueTC = () => (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    const currentStartValue = getState().counter.counter
+    localStorage.setItem('startValue', JSON.stringify(currentStartValue + 1))
+    dispatch(increaseValueAC())
+}
 
+/*export const setStartValueLocalStorageTC = () => (dispatch: Dispatch) => {
+    let max = localStorage.getItem('maxValue')
+    let start = localStorage.getItem('startValue')
+    if (max) {
+        let newMax = JSON.parse(max)
+        setMaxValue(newMax)
+    }
+    if (start) {
+        setStartValue(JSON.parse(start))
+    }
+}*/
 

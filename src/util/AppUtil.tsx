@@ -1,13 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import '../App.css';
-import {Counter} from '../components/Counter/Counter';
+import {Counter, DisplayCounterType, ErrorType} from '../components/Counter/Counter';
 import {Settings} from '../components/Settings/Settings';
 
-export type ErrorType = 'error' | 'none' | 'enter'
-export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
-
 function AppUtil() {
-
     const [startValue, setStartValue] = useState(0)
     const [maxValue, setMaxValue] = useState(5)
     const [counter, setCounter] = useState(0)
@@ -15,7 +11,7 @@ function AppUtil() {
     const [error, setError] = useState<ErrorType>('enter')
     const [displayCounter, setDisplayCounter] = useState<DisplayCounterType>('none')
 
-    useEffect(() => {
+/*    useEffect(() => {
         let max = localStorage.getItem('maxValue')
         let start = localStorage.getItem('startValue')
         if (max) {
@@ -29,7 +25,7 @@ function AppUtil() {
     useEffect(() => {
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
         localStorage.setItem('startValue', JSON.stringify(startValue))
-    }, [maxValue, startValue])
+    }, [maxValue, startValue])*/
 
     const isInitDataFalse =
         maxValue < 1 || startValue < 0 || startValue >= maxValue
@@ -78,19 +74,15 @@ function AppUtil() {
         <div className="App">
             <Settings startValue={startValue}
                       maxValue={maxValue}
-
                       settingsStartValue={settingsStartValue}
                       settingsMaxValue={settingsMaxValue}
-
                       setButton={setButton}
                       error={error}/>
 
             <Counter increaseValue={increaseValue}
                      resetValue={resetValue}
-
                      startValue={counter}
                      maxValue={maxValue}
-
                      error={error}
                      displayCounter={displayCounter}/>
         </div>

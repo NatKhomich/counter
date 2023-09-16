@@ -1,6 +1,6 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import s from '../Settings/Settings.module.css';
-import {ErrorType} from '../../util/AppUtil';
+import {ErrorType} from '../Counter/Counter';
 
 type InputType = {
     value: number
@@ -8,16 +8,14 @@ type InputType = {
     error: ErrorType
 }
 
-export const Input = (props: InputType) => {
-
+export const Input: FC<InputType> = ({value,onChange, error }) => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.onChange(+e.currentTarget.value)
+        onChange(+e.currentTarget.value)
     }
-
     return (
         <input type={'number'}
-               value={props.value}
-               className={props.error === 'error' ? s.error : s.input}
+               value={value}
+               className={error === 'error' ? s.error : s.input}
                onChange={onChangeHandler}
         />
     );

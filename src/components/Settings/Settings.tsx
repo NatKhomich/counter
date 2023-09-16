@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react';
 import s from './Settings.module.css'
-import {ErrorType} from '../../util/AppUtil';
 import Button from '../Button/Button';
+import {ErrorType} from '../Counter/Counter';
 
 type SettingsType = {
     startValue: number
@@ -21,11 +21,11 @@ export const Settings: FC<SettingsType> = ({
                                                error
                                            }) => {
 
-    const maxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        settingsMaxValue(+event.currentTarget.value)
+    const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        settingsMaxValue(+e.currentTarget.value)
     }
-    const minValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        settingsStartValue(+event.currentTarget.value)
+    const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        settingsStartValue(+e.currentTarget.value)
     }
 
     return (

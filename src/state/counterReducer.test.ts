@@ -3,9 +3,8 @@ import {
     increaseValueAC,
     resetValueAC, setButtonAC,
     settingsMaxValueAC,
-    settingsStartValueAC
+    settingsStartValueAC, StateType
 } from './counterReducer';
-import {StateType} from '../App';
 
 let startState: StateType
 

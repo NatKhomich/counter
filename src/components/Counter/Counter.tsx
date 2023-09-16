@@ -1,8 +1,10 @@
 import React, {FC} from 'react';
 import s from './Counter.module.css'
 import sBtn from '../Button/Button.module.css'
-import {DisplayCounterType, ErrorType} from '../../util/AppUtil';
 import Button from '../Button/Button';
+
+export type ErrorType = 'error' | 'none' | 'enter'
+export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
 
 type CounterType = {
     increaseValue: () => void
