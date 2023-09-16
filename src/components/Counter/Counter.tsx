@@ -24,12 +24,8 @@ export const Counter: FC<CounterType> = ({
                                              displayCounter
                                          }) => {
 
-    const buttonIncreaseHandler = () => {
-        increaseValue()
-    }
-    const buttonResetHandler = () => {
-        resetValue()
-    }
+    const buttonIncreaseHandler = () => increaseValue()
+    const buttonResetHandler = () => resetValue()
 
     return (
         <div className={s.counter}>

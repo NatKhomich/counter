@@ -4,10 +4,10 @@ import {Counter} from './components/Counter/Counter';
 import {Settings} from './components/Settings/Settings';
 import {
     increaseValueTC,
-    resetValueAC,
-    setButtonAC,
-    settingsMaxValueAC,
-    settingsStartValueAC,
+    resetValueTC,
+    setButtonTC,
+    settingsMaxValueTC,
+    settingsStartValueTC,
     StateType
 } from './state/counterReducer';
 import {useSelector} from 'react-redux';
@@ -17,21 +17,11 @@ function App() {
     const state = useSelector<AppRootStateType, StateType>(state => state.counter)
     const dispatch = useAppDispatch()
 
-    const increaseValue = () => {
-        dispatch(increaseValueTC())
-    }
-    const resetValue = () => {
-        dispatch(resetValueAC())
-    }
-    const settingsMaxValue = (maxValue: number) => {
-        dispatch(settingsMaxValueAC(maxValue))
-    }
-    const settingsStartValue = (startValue: number) => {
-        dispatch(settingsStartValueAC(startValue))
-    }
-    const setButton = () => {
-        dispatch(setButtonAC())
-    }
+    const increaseValue = () => dispatch(increaseValueTC())
+    const resetValue = () => dispatch(resetValueTC())
+    const settingsMaxValue = (maxValue: number) => dispatch(settingsMaxValueTC(maxValue))
+    const settingsStartValue = (startValue: number) => dispatch(settingsStartValueTC(startValue))
+    const setButton = () => dispatch(setButtonTC())
 
     return (
         <div className="App">

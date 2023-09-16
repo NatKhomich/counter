@@ -21,12 +21,8 @@ export const Settings: FC<SettingsType> = ({
                                                error
                                            }) => {
 
-    const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        settingsMaxValue(+e.currentTarget.value)
-    }
-    const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        settingsStartValue(+e.currentTarget.value)
-    }
+    const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => settingsMaxValue(+e.currentTarget.value)
+    const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => settingsStartValue(+e.currentTarget.value)
 
     return (
         <div className={s.settings}>

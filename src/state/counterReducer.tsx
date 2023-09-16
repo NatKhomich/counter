@@ -27,51 +27,39 @@ export const counterReducer = (state = initialState, action: ActionsType): State
         }
         case 'SETTINGS-MAX-VALUE' : {
             if (action.maxValue < 1 || action.maxValue <= state.startValue) {
-                return {
-                    ...state, maxValue: action.maxValue,
+                return {...state, maxValue: action.maxValue,
                     error: state.error = 'error',
-                    displayCounter: state.displayCounter = 'error'
-                }
+                    displayCounter: state.displayCounter = 'error'}
             } else {
-                return {
-                    ...state,
+                return {...state,
                     maxValue: action.maxValue,
                     error: state.error = 'none',
-                    displayCounter: state.displayCounter = 'startTitle',
-                }
+                    displayCounter: state.displayCounter = 'startTitle',}
             }
         }
         case 'SETTINGS-START-VALUE' : {
             if (action.startValue < 0 || action.startValue >= state.maxValue) {
-                return {
-                    ...state,
+                return {...state,
                     startValue: Math.round(action.startValue),
                     counter: state.startValue,
                     error: state.error = 'error',
-                    displayCounter: state.displayCounter = 'error'
-                }
+                    displayCounter: state.displayCounter = 'error'}
             } else {
-                return {
-                    ...state,
+                return {...state,
                     startValue: Math.round(action.startValue),
                     error: state.error = 'none',
-                    displayCounter: state.displayCounter = 'startTitle'
-                }
+                    displayCounter: state.displayCounter = 'startTitle'}
             }
         }
         case 'SET-BUTTON' : {
             if (state.maxValue < 1 || state.startValue < 0 || state.startValue >= state.maxValue) {
-                return {
-                    ...state,
+                return {...state,
                     error: state.error = 'error',
-                    displayCounter: state.displayCounter = 'error',
-                }
+                    displayCounter: state.displayCounter = 'error'}
             } else {
-                return {
-                    ...state, error: state.error = 'none',
+                return {...state, error: state.error = 'none',
                     displayCounter: state.displayCounter = 'number',
-                    counter: state.startValue
-                }
+                    counter: state.startValue}
             }
         }
         default:
@@ -88,7 +76,9 @@ export const resetValueAC = () => ({type: 'RESET-VALUE'} as const)
 export const settingsMaxValueAC = (maxValue: number) => ({type: 'SETTINGS-MAX-VALUE', maxValue} as const)
 export const settingsStartValueAC = (startValue: number) => ({type: 'SETTINGS-START-VALUE', startValue} as const)
 export const setButtonAC = () => ({type: 'SET-BUTTON'} as const)
-//thunk
-export const increaseValueTC = () => (dispatch: Dispatch) => {
-    dispatch(increaseValueAC())
-}
+
+export const increaseValueTC = () => (dispatch: Dispatch) => dispatch(increaseValueAC())
+export const resetValueTC = () => (dispatch: Dispatch) => dispatch(resetValueAC())
+export const settingsMaxValueTC = (maxValue: number) => (dispatch: Dispatch) => dispatch(settingsMaxValueAC(maxValue))
+export const settingsStartValueTC = (maxValue: number) => (dispatch: Dispatch) => dispatch(settingsStartValueAC(maxValue))
+export const setButtonTC = () => (dispatch: Dispatch) => dispatch(setButtonAC())
