@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo, useCallback} from 'react';
 import s from './Counter.module.css'
 import sBtn from '../Button/Button.module.css'
 import Button from '../Button/Button';
@@ -15,7 +15,7 @@ type CounterType = {
     displayCounter: DisplayCounterType
 }
 
-export const Counter: FC<CounterType> = ({
+export const Counter: FC<CounterType> = memo(({
                                              increaseValue,
                                              resetValue,
                                              startValue,
@@ -24,8 +24,8 @@ export const Counter: FC<CounterType> = ({
                                              displayCounter
                                          }) => {
 
-    const buttonIncreaseHandler = () => increaseValue()
-    const buttonResetHandler = () => resetValue()
+    const buttonIncreaseHandler = useCallback(() => increaseValue(), [increaseValue])
+    const buttonResetHandler = useCallback(() => resetValue(), [resetValue])
 
     return (
         <div className={s.counter}>
@@ -54,4 +54,4 @@ export const Counter: FC<CounterType> = ({
             </div>
         </div>
     )
-}
+})

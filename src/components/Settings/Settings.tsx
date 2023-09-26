@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {ChangeEvent, FC, memo, useCallback} from 'react';
 import s from './Settings.module.css'
 import Button from '../Button/Button';
 import {ErrorType} from '../Counter/Counter';
@@ -12,7 +12,7 @@ type SettingsType = {
     error: ErrorType
 }
 
-export const Settings: FC<SettingsType> = ({
+export const Settings: FC<SettingsType> = memo(({
                                                startValue,
                                                maxValue,
                                                settingsStartValue,
@@ -21,8 +21,12 @@ export const Settings: FC<SettingsType> = ({
                                                error
                                            }) => {
 
-    const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => settingsMaxValue(+e.currentTarget.value)
-    const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => settingsStartValue(+e.currentTarget.value)
+    const maxValueHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+            settingsMaxValue(+e.currentTarget.value)
+    }, [settingsMaxValue])
+    const minValueHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+            settingsStartValue(+e.currentTarget.value)
+    }, [settingsStartValue])
 
     return (
         <div className={s.settings}>
@@ -45,5 +49,5 @@ export const Settings: FC<SettingsType> = ({
                     disabled={error === 'error'}/>
         </div>
     );
-};
+})
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import {Settings} from './components/Settings/Settings';
@@ -17,11 +17,11 @@ function App() {
     const state = useSelector<AppRootStateType, StateType>(state => state.counter)
     const dispatch = useAppDispatch()
 
-    const increaseValue = () => dispatch(increaseValueTC())
-    const resetValue = () => dispatch(resetValueTC())
-    const settingsMaxValue = (maxValue: number) => dispatch(settingsMaxValueTC(maxValue))
-    const settingsStartValue = (startValue: number) => dispatch(settingsStartValueTC(startValue))
-    const setButton = () => dispatch(setButtonTC())
+    const increaseValue = useCallback(() => dispatch(increaseValueTC()), [dispatch])
+    const resetValue = useCallback(() => dispatch(resetValueTC()),[dispatch])
+    const settingsMaxValue = useCallback((maxValue: number) => dispatch(settingsMaxValueTC(maxValue)),[dispatch])
+    const settingsStartValue = useCallback((startValue: number) => dispatch(settingsStartValueTC(startValue)),[dispatch])
+    const setButton = useCallback(() => dispatch(setButtonTC()),[dispatch])
 
     return (
         <div className="App">
