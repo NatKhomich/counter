@@ -18,10 +18,10 @@ function App() {
     const dispatch = useAppDispatch()
 
     const increaseValue = useCallback(() => dispatch(increaseValueTC()), [dispatch])
-    const resetValue = useCallback(() => dispatch(resetValueTC()),[dispatch])
-    const settingsMaxValue = useCallback((maxValue: number) => dispatch(settingsMaxValueTC(maxValue)),[dispatch])
-    const settingsStartValue = useCallback((startValue: number) => dispatch(settingsStartValueTC(startValue)),[dispatch])
-    const setButton = useCallback(() => dispatch(setButtonTC()),[dispatch])
+    const resetValue = useCallback(() => dispatch(resetValueTC()), [dispatch])
+    const settingsMaxValue = useCallback((maxValue: number) => dispatch(settingsMaxValueTC(maxValue)), [dispatch])
+    const settingsStartValue = useCallback((startValue: number) => dispatch(settingsStartValueTC(startValue)), [dispatch])
+    const setButton = useCallback(() => dispatch(setButtonTC()), [dispatch])
 
     return (
         <div className="App">

@@ -1,12 +1,12 @@
 import React, {FC, memo, useCallback} from 'react';
-import s from './Counter.module.css'
-import sBtn from '../Button/Button.module.css'
+import styles from './Counter.module.css'
+import stylesBtn from '../Button/Button.module.css'
 import Button from '../Button/Button';
 
 export type ErrorType = 'error' | 'none' | 'enter'
 export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
 
-type CounterType = {
+type Counter = {
     increaseValue: () => void
     resetValue: () => void
     startValue: number
@@ -15,34 +15,30 @@ type CounterType = {
     displayCounter: DisplayCounterType
 }
 
-export const Counter: FC<CounterType> = memo(({
-                                             increaseValue,
-                                             resetValue,
-                                             startValue,
-                                             maxValue,
-                                             error,
-                                             displayCounter
-                                         }) => {
+export const Counter: FC<Counter> = memo((props) => {
+
+    const {increaseValue, resetValue, startValue, maxValue, error, displayCounter} = props
 
     const buttonIncreaseHandler = useCallback(() => increaseValue(), [increaseValue])
     const buttonResetHandler = useCallback(() => resetValue(), [resetValue])
 
+    const incorrectValue = displayCounter === 'error' && error === 'error'
+    const enterValue = displayCounter === 'startTitle' || displayCounter === 'none'
+
     return (
-        <div className={s.counter}>
-            <div className={s.displayBlock}>
+        <div className={styles.counter}>
+            <div className={styles.displayBlock}>
 
                 {displayCounter === 'startTitle' && error === 'enter' &&
-                    <div className={s.text}> enter value and press "set" </div>}
+                    <div className={styles.text}> enter value and press "set" </div>}
 
-                {displayCounter === 'error' && error === 'error' ?
-                    <div className={s.errorMessage}> incorrect value! </div>
-                    : displayCounter === 'startTitle' || displayCounter === 'none' ?
-                        <div className={s.text}> enter value and press "set" </div>
-                        : <div className={startValue === maxValue ? s.numberRed : s.number}>
+                {incorrectValue ? <div className={styles.errorMessage}> incorrect value! </div>
+                    : enterValue ? <div className={styles.text}> enter value and press "set" </div>
+                        : <div className={startValue === maxValue ? styles.numberRed : styles.number}>
                             {startValue}
                         </div>}
             </div>
-            <div className={sBtn.button}>
+            <div className={stylesBtn.button}>
                 <Button disabled={error === 'error' ||
                     maxValue === startValue ||
                     !displayCounter ||
