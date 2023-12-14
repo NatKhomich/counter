@@ -1,28 +1,23 @@
-import React, {ChangeEvent, FC, memo, useCallback} from 'react';
+import React, {ChangeEvent, memo} from 'react';
 import styles from './Settings.module.css'
 import Button from '../Button/Button';
 import {ErrorType} from '../Counter/Counter';
+import {setButtonAC, settingsMaxValueAC, settingsStartValueAC} from '../../state/counterReducer';
+import {useAppDispatch} from '../../state/store';
 
-type Settings = {
+type Props = {
     startValue: number
     maxValue: number
-    settingsStartValue: (startValue: number) => void
-    settingsMaxValue: (maxValue: number) => void
-    setButton: () => void
     error: ErrorType
 }
 
-export const Settings: FC<Settings> = memo((props) => {
+export const Settings = memo(({startValue, maxValue, error}: Props) => {
 
-    const {startValue, maxValue, settingsStartValue, settingsMaxValue, setButton, error} = props
+    const dispatch = useAppDispatch()
 
-    const maxValueHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-            settingsMaxValue(+e.currentTarget.value)
-    }, [settingsMaxValue])
-
-    const minValueHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-            settingsStartValue(+e.currentTarget.value)
-    }, [settingsStartValue])
+    const settingsMaxValue = (e: ChangeEvent<HTMLInputElement>) => dispatch(settingsMaxValueAC(+e.currentTarget.value))
+    const settingsStartValue = (e: ChangeEvent<HTMLInputElement>) => dispatch(settingsStartValueAC(+e.currentTarget.value))
+    const setButton = () => dispatch(setButtonAC())
 
     return (
         <div className={styles.settings}>
@@ -31,17 +26,18 @@ export const Settings: FC<Settings> = memo((props) => {
                 <input className={error === 'error' ? styles.error : styles.input}
                        type="number"
                        value={maxValue}
-                       onChange={maxValueHandler}/>
+                       onChange={settingsMaxValue}/>
             </div>
             <div className={styles.startValue}>
                 <div className={styles.settingsTitle}> Start value:</div>
                 <input className={error === 'error' ? styles.error : styles.input}
                        type="number"
                        value={startValue}
-                       onChange={minValueHandler}/>
+                       onChange={settingsStartValue}/>
             </div>
+
             <Button name={'set'}
-                    callBack={() => setButton()}
+                    callBack={setButton}
                     disabled={error === 'error'}/>
         </div>
     );

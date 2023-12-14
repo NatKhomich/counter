@@ -1,21 +1,13 @@
 import {DisplayCounterType, ErrorType} from '../components/Counter/Counter';
-import {Dispatch} from 'redux';
 
-export type StateType = {
-    startValue: number
-    maxValue: number
-    counter: number
-    error: ErrorType
-    displayCounter: DisplayCounterType
-}
-
-let initialState: StateType = {
+let initialState = {
     startValue: 0,
     maxValue: 5,
     counter: 0,
-    error: 'enter',
-    displayCounter: 'none'
+    error: 'enter' as ErrorType,
+    displayCounter: 'none' as DisplayCounterType
 }
+export type StateType = typeof initialState
 
 export const counterReducer = (state = initialState, action: ActionsType): StateType => {
     switch (action.type) {
@@ -76,9 +68,3 @@ export const resetValueAC = () => ({type: 'RESET-VALUE'} as const)
 export const settingsMaxValueAC = (maxValue: number) => ({type: 'SETTINGS-MAX-VALUE', maxValue} as const)
 export const settingsStartValueAC = (startValue: number) => ({type: 'SETTINGS-START-VALUE', startValue} as const)
 export const setButtonAC = () => ({type: 'SET-BUTTON'} as const)
-
-export const increaseValueTC = () => (dispatch: Dispatch) => dispatch(increaseValueAC())
-export const resetValueTC = () => (dispatch: Dispatch) => dispatch(resetValueAC())
-export const settingsMaxValueTC = (maxValue: number) => (dispatch: Dispatch) => dispatch(settingsMaxValueAC(maxValue))
-export const settingsStartValueTC = (maxValue: number) => (dispatch: Dispatch) => dispatch(settingsStartValueAC(maxValue))
-export const setButtonTC = () => (dispatch: Dispatch) => dispatch(setButtonAC())

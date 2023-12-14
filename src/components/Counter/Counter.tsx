@@ -1,26 +1,25 @@
-import React, {FC, memo, useCallback} from 'react';
+import React, {memo} from 'react';
 import styles from './Counter.module.css'
 import stylesBtn from '../Button/Button.module.css'
 import Button from '../Button/Button';
+import {increaseValueAC, resetValueAC} from '../../state/counterReducer';
+import {useAppDispatch} from '../../state/store';
 
 export type ErrorType = 'error' | 'none' | 'enter'
 export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
 
-type Counter = {
-    increaseValue: () => void
-    resetValue: () => void
+type Props = {
     startValue: number
     maxValue: number
     error: ErrorType
     displayCounter: DisplayCounterType
 }
 
-export const Counter: FC<Counter> = memo((props) => {
+export const Counter = memo(({startValue, maxValue, error, displayCounter}: Props) => {
 
-    const {increaseValue, resetValue, startValue, maxValue, error, displayCounter} = props
-
-    const buttonIncreaseHandler = useCallback(() => increaseValue(), [increaseValue])
-    const buttonResetHandler = useCallback(() => resetValue(), [resetValue])
+    const dispatch = useAppDispatch()
+    const increaseValueHandler = () => dispatch(increaseValueAC())
+    const resetValueHandler = () => dispatch(resetValueAC())
 
     const incorrectValue = displayCounter === 'error' && error === 'error'
     const enterValue = displayCounter === 'startTitle' || displayCounter === 'none'
@@ -44,9 +43,10 @@ export const Counter: FC<Counter> = memo((props) => {
                     !displayCounter ||
                     maxValue <= startValue}
                         name={'+'}
-                        callBack={buttonIncreaseHandler}/>
+                        callBack={increaseValueHandler}/>
+
                 <Button disabled={startValue === 0 || error === 'error'} name={'reset'}
-                        callBack={buttonResetHandler}/>
+                        callBack={resetValueHandler}/>
             </div>
         </div>
     )

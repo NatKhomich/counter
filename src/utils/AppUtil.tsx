@@ -74,14 +74,9 @@ function AppUtil() {
         <div className="App">
             <Settings startValue={startValue}
                       maxValue={maxValue}
-                      settingsStartValue={settingsStartValue}
-                      settingsMaxValue={settingsMaxValue}
-                      setButton={setButton}
                       error={error}/>
 
-            <Counter increaseValue={increaseValue}
-                     resetValue={resetValue}
-                     startValue={counter}
+            <Counter startValue={counter}
                      maxValue={maxValue}
                      error={error}
                      displayCounter={displayCounter}/>
