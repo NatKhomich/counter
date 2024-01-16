@@ -78,10 +78,12 @@ function AppUtil() {
                 //       error={error}
             />
 
-            <Counter counter={counter}
-                     maxValue={maxValue}
-                     error={error}
-                     displayCounter={displayCounter}/>
+            <Counter
+                // counter={counter}
+                //      maxValue={maxValue}
+                //      error={error}
+                //      displayCounter={displayCounter}
+            />
         </div>
     );
 }

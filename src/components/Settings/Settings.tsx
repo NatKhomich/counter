@@ -14,8 +14,10 @@ export const Settings = memo(() => {
 
     const dispatch = useAppDispatch()
 
-    const settingsMaxValue = (e: ChangeEvent<HTMLInputElement>) => dispatch(settingsMaxValueAC(+e.currentTarget.value))
-    const settingsStartValue = (e: ChangeEvent<HTMLInputElement>) => dispatch(settingsStartValueAC(+e.currentTarget.value))
+    const settingsMaxValue = (e: ChangeEvent<HTMLInputElement>) =>
+        dispatch(settingsMaxValueAC(Math.round(+e.currentTarget.value)))
+    const settingsStartValue = (e: ChangeEvent<HTMLInputElement>) =>
+        dispatch(settingsStartValueAC(Math.round(+e.currentTarget.value)))
     const setButton = () => dispatch(setButtonAC())
 
     return (

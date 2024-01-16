@@ -3,19 +3,18 @@ import styles from './Counter.module.css'
 import stylesBtn from '../Button/Button.module.css'
 import Button from '../Button/Button';
 import {increaseValueAC, resetValueAC} from '../../state/counterReducer';
-import {useAppDispatch} from '../../state/store';
+import {AppRootStateType, useAppDispatch} from '../../state/store';
+import {useSelector} from 'react-redux';
 
 export type ErrorType = 'error' | 'none' | 'enter'
 export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
 
-type Props = {
-    counter: number
-    maxValue: number
-    error: ErrorType
-    displayCounter: DisplayCounterType
-}
+export const Counter = memo(() => {
 
-export const Counter = memo(({counter, maxValue, error, displayCounter}: Props) => {
+    const counter = useSelector<AppRootStateType, number>(state => state.counter.counter)
+    const maxValue = useSelector<AppRootStateType, number>(state => state.counter.maxValue)
+    const error = useSelector<AppRootStateType, ErrorType>(state => state.counter.error)
+    const displayCounter = useSelector<AppRootStateType, DisplayCounterType>(state => state.counter.displayCounter)
 
     const dispatch = useAppDispatch()
     const increaseValueHandler = () => dispatch(increaseValueAC())
