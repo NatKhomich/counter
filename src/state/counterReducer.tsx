@@ -26,7 +26,7 @@ export const counterReducer = (state = initialState, action: ActionsType): State
                 return {...state,
                     maxValue: action.maxValue,
                     error: state.error = 'none',
-                    displayCounter: state.displayCounter = 'startTitle',}
+                    displayCounter: state.displayCounter = 'startTitle'}
             }
         }
         case 'SETTINGS-START-VALUE' : {

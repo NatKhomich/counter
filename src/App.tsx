@@ -11,14 +11,13 @@ function App() {
 
     return (
         <div className="App">
-            <Settings startValue={state.startValue}
-                      maxValue={state.maxValue}
-                      error={state.error}/>
+            <Settings />
 
-            <Counter startValue={state.counter}
-                     maxValue={state.maxValue}
-                     error={state.error}
-                     displayCounter={state.displayCounter}/>
+            <Counter
+                counter={state.counter}
+                maxValue={state.maxValue}
+                error={state.error}
+                displayCounter={state.displayCounter}/>
         </div>
     );
 }

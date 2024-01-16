@@ -9,13 +9,13 @@ export type ErrorType = 'error' | 'none' | 'enter'
 export type DisplayCounterType = 'error' | 'number' | 'startTitle' | 'none'
 
 type Props = {
-    startValue: number
+    counter: number
     maxValue: number
     error: ErrorType
     displayCounter: DisplayCounterType
 }
 
-export const Counter = memo(({startValue, maxValue, error, displayCounter}: Props) => {
+export const Counter = memo(({counter, maxValue, error, displayCounter}: Props) => {
 
     const dispatch = useAppDispatch()
     const increaseValueHandler = () => dispatch(increaseValueAC())
@@ -23,6 +23,8 @@ export const Counter = memo(({startValue, maxValue, error, displayCounter}: Prop
 
     const incorrectValue = displayCounter === 'error' && error === 'error'
     const enterValue = displayCounter === 'startTitle' || displayCounter === 'none'
+    const disabledIncrease = error === 'error' || maxValue === counter || !displayCounter || maxValue <= counter
+    const disabledReset = counter === 0 || error === 'error'
 
     return (
         <div className={styles.counter}>
@@ -31,22 +33,16 @@ export const Counter = memo(({startValue, maxValue, error, displayCounter}: Prop
                 {displayCounter === 'startTitle' && error === 'enter' &&
                     <div className={styles.text}> enter value and press "set" </div>}
 
-                {incorrectValue ? <div className={styles.errorMessage}> incorrect value! </div>
-                    : enterValue ? <div className={styles.text}> enter value and press "set" </div>
-                        : <div className={startValue === maxValue ? styles.numberRed : styles.number}>
-                            {startValue}
+                {incorrectValue ? <div className={styles.errorMessage}> Incorrect value! </div>
+                    : enterValue ? <div className={styles.text}> Enter value and press "set" </div>
+                        : <div className={counter === maxValue ? styles.numberRed : styles.number}>
+                            {counter}
                         </div>}
             </div>
             <div className={stylesBtn.button}>
-                <Button disabled={error === 'error' ||
-                    maxValue === startValue ||
-                    !displayCounter ||
-                    maxValue <= startValue}
-                        name={'+'}
-                        callBack={increaseValueHandler}/>
+                <Button disabled={disabledIncrease} name={'+'} callBack={increaseValueHandler}/>
 
-                <Button disabled={startValue === 0 || error === 'error'} name={'reset'}
-                        callBack={resetValueHandler}/>
+                <Button disabled={disabledReset} name={'reset'} callBack={resetValueHandler}/>
             </div>
         </div>
     )

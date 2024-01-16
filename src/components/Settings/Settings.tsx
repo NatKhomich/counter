@@ -3,15 +3,14 @@ import styles from './Settings.module.css'
 import Button from '../Button/Button';
 import {ErrorType} from '../Counter/Counter';
 import {setButtonAC, settingsMaxValueAC, settingsStartValueAC} from '../../state/counterReducer';
-import {useAppDispatch} from '../../state/store';
+import {AppRootStateType, useAppDispatch} from '../../state/store';
+import {useSelector} from 'react-redux';
 
-type Props = {
-    startValue: number
-    maxValue: number
-    error: ErrorType
-}
+export const Settings = memo(() => {
 
-export const Settings = memo(({startValue, maxValue, error}: Props) => {
+    const startValue = useSelector<AppRootStateType, number>(state => state.counter.startValue)
+    const maxValue = useSelector<AppRootStateType, number>(state => state.counter.maxValue)
+    const error = useSelector<AppRootStateType, ErrorType>(state => state.counter.error)
 
     const dispatch = useAppDispatch()
 
